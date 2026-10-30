@@ -230,6 +230,32 @@ function withUploadHandlers(
 }
 
 /** Dev only: warn once when extensions/plugins come from a duplicated tiptap install. */
+const keptNodeViews = new WeakSet<object>();
+
+/**
+ * tiptap's `EditorContent` drops every node view on unmount (`setProps({ nodeViews: {} })`), so
+ * ProseMirror re-renders those nodes through `renderHTML` in the live document right before the
+ * editor is destroyed: every image there starts loading its document src (`asset:` srcs fail
+ * with ERR_UNKNOWN_URL_SCHEME). The editor's own node views have no React parts: keep them.
+ */
+function keepNodeViewsOnUnmount(editor: Editor): void {
+  if (editor.isDestroyed) return;
+  const view = editor.view;
+  if (keptNodeViews.has(view)) return;
+  const setProps = view.setProps.bind(view);
+  view.setProps = (props) => {
+    const nodeViews = props.nodeViews;
+    if (nodeViews && Object.keys(nodeViews).length === 0) {
+      const rest = { ...props };
+      delete rest.nodeViews;
+      setProps(rest);
+      return;
+    }
+    setProps(props);
+  };
+  keptNodeViews.add(view);
+}
+
 function reportDuplicates(target: Editor | Extensions): void {
   if (!isDevelopment()) return;
   const findings = detectTiptapDuplicates(target);
@@ -527,6 +553,10 @@ export const RcmEditor = forwardRef<RcmEditorHandle, RcmEditorProps>(function Rc
     },
     onBlur: () => flush(),
   });
+
+  useEffect(() => {
+    if (editor) keepNodeViewsOnUnmount(editor);
+  }, [editor]);
 
   useEffect(() => {
     editorRef.current = editor;

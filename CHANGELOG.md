@@ -2,6 +2,12 @@
 
 이 파일은 `@rchemist/editor` 의 공개된 변경 이력을 기록합니다.
 
+## [0.1.2] - 2026-10-30
+
+### Fixed
+
+- `RcmEditor`를 unmount하거나 `mountEditor().destroy()`를 호출할 때 이미지가 문서 src로 라이브 문서에 다시 그려지던 문제를 고쳤습니다. 이미지마다 `asset:` 요청 실패와 `net::ERR_UNKNOWN_URL_SCHEME` 콘솔 오류가 하나씩 나던 문제입니다(tiptap `EditorContent`가 unmount 때 노드뷰를 비우던 동작). destroy 전에 `setContent`로 문서를 비우는 우회는 더 이상 필요 없습니다.
+
 ## [0.1.1] - 2026-10-30
 
 ### Added

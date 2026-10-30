@@ -18,6 +18,30 @@ afterEach(() => {
 });
 
 describe('mountEditor', () => {
+  it('destroy() never re-renders images in the live document (no asset: fetch on teardown)', () => {
+    const asset = `asset:sha256:${'ab'.repeat(32)}`;
+    const { m } = mount({
+      defaultValue: {
+        type: 'doc',
+        content: [
+          { type: 'image', attrs: { src: asset } },
+          { type: 'image', attrs: { src: 'https://example.test/a.png' } },
+        ],
+      },
+      resolveAsset: () => null,
+    });
+    const createElement = vi.spyOn(document, 'createElement');
+    const setAttribute = vi.spyOn(Element.prototype, 'setAttribute');
+    try {
+      m.destroy();
+      expect(createElement.mock.calls.filter(([tag]) => tag === 'img')).toHaveLength(0);
+      expect(setAttribute.mock.calls.filter(([name]) => name === 'src')).toHaveLength(0);
+    } finally {
+      createElement.mockRestore();
+      setAttribute.mockRestore();
+    }
+  });
+
   it('returns a live editor synchronously with lossless getJSON/getHTML', () => {
     const { el, m } = mount({ defaultValue: '<p>hi</p>' });
     expect(m.editor.getText()).toBe('hi');
