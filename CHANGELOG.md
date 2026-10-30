@@ -2,7 +2,19 @@
 
 이 파일은 `@rchemist/editor` 의 공개된 변경 이력을 기록합니다.
 
-## [0.1.0] - Unreleased
+## [0.1.1] - 2026-10-30
+
+### Added
+
+- 자산이 없는 이미지(`data-asset-state="missing"`)에 라벨(`그림 데이터 없음 · <sha 앞 8자>`)을 표시합니다. `features.image.missingAssetLabel`로 바꾸거나 빈 문자열로 끌 수 있고, 기본값은 `DEFAULT_MISSING_ASSET_LABEL`입니다.
+
+### Fixed
+
+- `getHTML()`(onChange·destroy 시 flush 포함)과 HTML 불러오기 검사가 이미지를 라이브 문서에서 만들지 않습니다. 브라우저가 `asset:` src를 불러오려다 `net::ERR_UNKNOWN_URL_SCHEME` 오류를 내던 문제를 고쳤습니다.
+- 캡션 그림(`figure`)의 이미지를 선택한 채 글자를 입력하거나 Backspace·Delete·붙여넣기를 하면 키마다 빈 이미지(`src: null`)가 생기던 문제를 고쳤습니다. 이제 그림 전체가 바뀌거나 지워지고, 복사·끌기도 그림 전체를 대상으로 합니다.
+- 자산이 없는 이미지가 보기 DOM에 원본 `asset:` src를 남기지 않습니다(이미지마다 콘솔 리소스 오류가 하나씩 나던 문제). 문서 JSON·HTML의 src는 그대로 유지됩니다.
+
+## [0.1.0] - 2026-10-30
 
 ### Added
 

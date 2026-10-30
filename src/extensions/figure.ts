@@ -1,6 +1,7 @@
 // figure/figcaption (editor-only).
 import { Node, mergeAttributes } from '@tiptap/core';
-import { NodeSelection, TextSelection } from '@tiptap/pm/state';
+import { NodeSelection, Plugin, PluginKey, SelectionRange, TextSelection } from '@tiptap/pm/state';
+import type { ResolvedPos, Slice } from '@tiptap/pm/model';
 
 export interface FigureOptions {
   HTMLAttributes: Record<string, unknown>;
@@ -23,6 +24,51 @@ declare module '@tiptap/core' {
     };
   }
 }
+
+/**
+ * The image of a `figure`, selected. Replacing, deleting, copying or dragging it acts on the whole
+ * figure: `figure` requires its image, so replacing only the image (typing, Backspace, paste over
+ * the selected image) made ProseMirror fill the hole with a new empty image (`src: null`) per
+ * keystroke. Image commands still see an image NodeSelection.
+ */
+export class FigureImageSelection extends NodeSelection {
+  constructor($pos: ResolvedPos) {
+    super($pos);
+    // `replace`/`replaceWith` (typing, paste) and tiptap's `deleteSelection` work on `ranges`.
+    const doc = $pos.doc;
+    const figurePos = $pos.before();
+    const figure = $pos.parent;
+    (this as { ranges: readonly SelectionRange[] }).ranges = [
+      new SelectionRange(doc.resolve(figurePos), doc.resolve(figurePos + figure.nodeSize)),
+    ];
+  }
+
+  // `Selection` derives these from `ranges[0]`; `from`/`to` stay the image's (image commands).
+  override get $from(): ResolvedPos {
+    return this.$anchor;
+  }
+
+  override get $to(): ResolvedPos {
+    return this.$head;
+  }
+
+  override content(): Slice {
+    return NodeSelection.create(this.$from.doc, this.$from.before()).content();
+  }
+}
+
+/** True when `selection` is a plain NodeSelection of the image directly inside a `figure`. */
+function isPlainFigureImage(selection: unknown, figureName: string): selection is NodeSelection {
+  return (
+    selection instanceof NodeSelection &&
+    !(selection instanceof FigureImageSelection) &&
+    selection.$from.depth > 0 &&
+    selection.$from.parent.type.name === figureName &&
+    selection.$from.index() === 0
+  );
+}
+
+const FIGURE_IMAGE_SELECTION_KEY = new PluginKey('rcmFigureImageSelection');
 
 /** `<figcaption>`: inline caption content, only valid inside `figure`. */
 export const Figcaption = Node.create<FigcaptionOptions>({
@@ -84,6 +130,22 @@ export const Figure = Node.create<FigureOptions>({
 
   renderHTML({ HTMLAttributes }) {
     return ['figure', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+  },
+
+  addProseMirrorPlugins() {
+    const name = this.name;
+    return [
+      new Plugin({
+        key: FIGURE_IMAGE_SELECTION_KEY,
+        // Every image NodeSelection inside a figure (click, arrow keys, commands, undo) becomes a
+        // FigureImageSelection.
+        appendTransaction: (_trs, _old, state) => {
+          const { selection } = state;
+          if (!isPlainFigureImage(selection, name)) return null;
+          return state.tr.setSelection(new FigureImageSelection(selection.$from));
+        },
+      }),
+    ];
   },
 
   addCommands() {

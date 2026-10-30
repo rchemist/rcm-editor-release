@@ -1,7 +1,7 @@
 // HTML output fidelity: what getHTML() writes is what the schema rendered.
 import { Extension } from '@tiptap/core';
 import { DOMSerializer } from '@tiptap/pm/model';
-import type { DOMOutputSpec, Mark, Node as PMNode, Schema } from '@tiptap/pm/model';
+import type { DOMOutputSpec, Fragment, Mark, Node as PMNode, Schema } from '@tiptap/pm/model';
 import { sanitizeStyle } from './cssLength';
 
 /** Style that makes ProseMirror's DOMParser keep the whitespace of the element's text. */
@@ -26,6 +26,11 @@ export function isWhitespaceOnlySpan(element: HTMLElement): boolean {
 type SerializeOptions = { document?: Document };
 type Rendered = { dom: globalThis.Node; contentDOM?: HTMLElement | null };
 type PatchableSerializer = DOMSerializer & {
+  serializeFragment(
+    fragment: Fragment,
+    options?: SerializeOptions,
+    target?: HTMLElement | DocumentFragment,
+  ): HTMLElement | DocumentFragment;
   serializeNodeInner(node: PMNode, options: SerializeOptions): globalThis.Node;
   serializeMark(mark: Mark, inline: boolean, options?: SerializeOptions): Rendered | null;
   __rcmFidelity?: true;
@@ -66,16 +71,33 @@ function restoreStyles(spec: DOMOutputSpec, dom: globalThis.Node | null | undefi
   }
 }
 
+let inert: Document | null = null;
+function inertDocument(): Document {
+  return (inert ??= document.implementation.createHTMLDocument(''));
+}
+
 /**
  * Patches `schema`'s cached DOMSerializer (used by `getHTML()` and copy) so that
  * - inline styles are written exactly as the extensions rendered them (no CSS canonicalisation);
  * - a text node containing a tab renders inside `<span style="white-space: pre-wrap">`
- *   (ProseMirror's DOMParser collapses `\t` to a space unless `white-space` is `pre*`).
+ *   (ProseMirror's DOMParser collapses `\t` to a space unless `white-space` is `pre*`);
+ * - a fragment serialized without an explicit `document` is built in an inert document, so
+ *   images in the output are never fetched.
  * Idempotent; does not touch the editing view.
  */
 export function patchHtmlSerializer(schema: Schema): void {
   const serializer = DOMSerializer.fromSchema(schema) as PatchableSerializer;
   if (serializer.__rcmFidelity) return;
+  const fragmentInner = serializer.serializeFragment.bind(serializer);
+  // tiptap's getHTMLFromFragment serializes into the live document, where an `<img>` starts
+  // loading as soon as it has a src (`asset:` srcs fail with ERR_UNKNOWN_URL_SCHEME, real URLs
+  // are fetched for nothing). An inert document has no browsing context: nothing loads.
+  serializer.serializeFragment = (fragment, options = {}, target) =>
+    fragmentInner(
+      fragment,
+      options.document || target ? options : { ...options, document: inertDocument() },
+      target,
+    );
   const inner = serializer.serializeNodeInner.bind(serializer);
   const markInner = serializer.serializeMark.bind(serializer);
   serializer.serializeNodeInner = (node, options = {}) => {

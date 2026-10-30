@@ -29,7 +29,12 @@ export {
   cellAttributes,
 } from './extensions/table';
 export type { CellBorderSide, CellVerticalAlign, TableAlign, TableWidth } from './extensions/table';
-export { RcmImage, isAssetSrc, parseImageAlign } from './extensions/image';
+export {
+  DEFAULT_MISSING_ASSET_LABEL,
+  RcmImage,
+  isAssetSrc,
+  parseImageAlign,
+} from './extensions/image';
 export type { ImageAlign, RcmImageOptions, ResolveAsset } from './extensions/image';
 export { Figcaption, Figure } from './extensions/figure';
 export type { FigcaptionOptions, FigureOptions } from './extensions/figure';

@@ -135,6 +135,16 @@
   outline: 1px dashed var(--rcm-editor-color-warning-border);
   background: var(--rcm-editor-color-warning-bg);
 }
+/* Label of a missing asset (`missingAssetLabel` · short sha) beside the empty box. */
+.rcm-editor [data-asset-state='missing'][data-asset-label]::after {
+  content: '\26A0\FE0E\00A0' attr(data-asset-label);
+  align-self: center;
+  margin-left: var(--rcm-editor-space-2);
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--rcm-editor-color-warning-fg);
+  white-space: nowrap;
+}
 
 /* --- figure / figcaption --- */
 .rcm-editor figure {

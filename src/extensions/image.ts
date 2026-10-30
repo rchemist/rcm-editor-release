@@ -49,7 +49,14 @@ export type ResolveAsset = (
 export interface RcmImageOptions extends ImageOptions {
   /** Display resolver for `asset:` srcs (JSON/HTML keep the original src). */
   resolveAsset: ResolveAsset | null;
+  /**
+   * Label of an image whose asset is missing (shown next to the empty box; the short sha
+   * follows). Empty string hides the label.
+   */
+  missingAssetLabel: string;
 }
+
+export const DEFAULT_MISSING_ASSET_LABEL = '그림 데이터 없음';
 
 const ALIGNS = new Set<string>(['left', 'center', 'right', 'inline']);
 const BLOCK_ALIGNS: readonly string[] = ['left', 'center', 'right', 'inline'];
@@ -230,35 +237,44 @@ function createSourceResolver(getResolver: () => ResolveAsset | null) {
   return (src: unknown, apply: (url: string | null, state: AssetState) => void) => {
     const current = ++token;
     const resolver = getResolver();
-    if (!isAssetSrc(src) || !resolver) {
-      apply(
-        typeof src === 'string' && src !== '' ? src : null,
-        isAssetSrc(src) ? 'missing' : 'none',
-      );
+    if (!isAssetSrc(src)) {
+      apply(typeof src === 'string' && src !== '' ? src : null, 'none');
+      return;
+    }
+    // A missing asset shows no src: `asset:` is not loadable (one console error per image).
+    if (!resolver) {
+      apply(null, 'missing');
       return;
     }
     let result: ReturnType<ResolveAsset>;
     try {
       result = resolver(src);
     } catch {
-      apply(src, 'missing');
+      apply(null, 'missing');
       return;
     }
     if (result && typeof (result as Promise<unknown>).then === 'function') {
       apply(null, 'pending');
       (result as Promise<string | null | undefined>).then(
         (url) => {
-          if (current === token) apply(url || src, url ? 'resolved' : 'missing');
+          if (current === token) apply(url || null, url ? 'resolved' : 'missing');
         },
         () => {
-          if (current === token) apply(src, 'missing');
+          if (current === token) apply(null, 'missing');
         },
       );
       return;
     }
     const url = result as string | null | undefined;
-    apply(url || src, url ? 'resolved' : 'missing');
+    apply(url || null, url ? 'resolved' : 'missing');
   };
+}
+
+/** `label · <first 8 hex of the sha>` for a missing `asset:sha256:` src. */
+function missingLabel(label: string, src: unknown): string {
+  if (!label) return '';
+  const sha = typeof src === 'string' ? /^asset:sha256:([0-9a-f]{8})/i.exec(src)?.[1] : undefined;
+  return sha ? `${label} · ${sha.toLowerCase()}` : label;
 }
 
 const VIEW_SKIPPED = new Set(['src', 'width', 'height', 'style', 'data-align']);
@@ -271,7 +287,12 @@ const VIEW_SKIPPED = new Set(['src', 'width', 'height', 'style', 'data-align']);
 export const RcmImage = Image.extend<RcmImageOptions>({
   addOptions() {
     // `data:` srcs are kept (base64 uploads, pasted HTML): dropping them silently loses content.
-    return { ...this.parent!(), allowBase64: true, resolveAsset: null };
+    return {
+      ...this.parent!(),
+      allowBase64: true,
+      resolveAsset: null,
+      missingAssetLabel: DEFAULT_MISSING_ASSET_LABEL,
+    };
   },
 
   addAttributes() {
@@ -366,6 +387,9 @@ export const RcmImage = Image.extend<RcmImageOptions>({
             if (el.getAttribute('src') !== url) el.src = url;
           } else if (el.hasAttribute('src')) el.removeAttribute('src');
           container.setAttribute('data-asset-state', state);
+          const label = state === 'missing' ? missingLabel(options.missingAssetLabel, src) : '';
+          if (label) container.setAttribute('data-asset-label', label);
+          else container.removeAttribute('data-asset-label');
           // Nothing will load: reveal the (hidden until loaded) resizable view now.
           if (!url && state !== 'pending') reveal?.();
         });

@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Editor, JSONContent } from '@tiptap/core';
+import { Fragment, Slice } from '@tiptap/pm/model';
 import { NodeSelection } from '@tiptap/pm/state';
 import {
+  DEFAULT_MISSING_ASSET_LABEL,
   DEFAULT_PLACEHOLDER_LABELS,
   PLACEHOLDER_KINDS,
   PLACEHOLDER_REASONS,
@@ -112,9 +114,40 @@ describe('image', () => {
     );
     const [missing, plain] = Array.from(editor.view.dom.querySelectorAll('img'));
     expect(missing!.getAttribute('data-asset-state')).toBe('missing');
-    expect(missing!.getAttribute('src')).toBe(ASSET);
+    // `asset:` is not loadable: the view shows no src (the document keeps it).
+    expect(missing!.hasAttribute('src')).toBe(false);
+    expect(editor.getJSON().content?.[0]?.attrs?.src).toBe(ASSET);
     expect(plain!.getAttribute('src')).toBe('https://example.test/a.png');
     expect(resolveAsset).toHaveBeenCalledTimes(1);
+  });
+
+  it('a missing asset is labelled (label · short sha); the label is injectable', () => {
+    const sha = 'ABCDEF0123456789'.repeat(4);
+    const src = `asset:sha256:${sha}`;
+    const label = (options?: Parameters<typeof makeEditor>[1]) =>
+      makeEditor(doc(image({ src })), { resolveAsset: () => null, ...options })
+        .view.dom.querySelector('[data-asset-state]')
+        ?.getAttribute('data-asset-label');
+    expect(label()).toBe(`${DEFAULT_MISSING_ASSET_LABEL} · abcdef01`);
+    expect(label({ features: { image: { missingAssetLabel: 'MISSING' } } })).toBe(
+      'MISSING · abcdef01',
+    );
+    expect(label({ features: { image: { missingAssetLabel: '' } } })).toBeNull();
+  });
+
+  it('getHTML() never creates images in the live document (no fetch of asset:/remote srcs)', () => {
+    const editor = makeEditor(
+      doc(image({ src: ASSET }), image({ src: 'https://example.test/a.png' })),
+      { resolveAsset: () => RESOLVED },
+    );
+    const createElement = vi.spyOn(document, 'createElement');
+    try {
+      const html = editor.getHTML();
+      expect(html).toContain(`src="${ASSET}"`);
+      expect(createElement.mock.calls.filter(([tag]) => tag === 'img')).toHaveLength(0);
+    } finally {
+      createElement.mockRestore();
+    }
   });
 
   it('align left/center/right/inline survives JSON → HTML → JSON; default stays absent', () => {
@@ -210,6 +243,49 @@ describe('figure / figcaption', () => {
     expect(editor.commands.toggleImageCaption()).toBe(true);
     expect(editor.getJSON()).toEqual(original);
     expect(editor.state.selection).toBeInstanceOf(NodeSelection);
+  });
+
+  it('a selected figure image is replaced, deleted and copied as the whole figure (no empty image)', () => {
+    const source = doc(
+      para('a'),
+      {
+        type: 'figure',
+        content: [
+          image({ src: ASSET, width: 10, height: 10 }),
+          { type: 'figcaption', content: [{ type: 'text', text: 'cap' }] },
+        ],
+      },
+      para('b'),
+    );
+    const blocks = (editor: Editor) =>
+      (editor.getJSON().content ?? []).map((n) => `${n.type}:${n.content?.[0]?.text ?? ''}`);
+    const selected = () => {
+      const editor = makeEditor(source);
+      selectNode(editor, posOf(editor, 'image'));
+      // Image commands and the image bar still see an image NodeSelection.
+      expect(editor.state.selection).toBeInstanceOf(NodeSelection);
+      expect((editor.state.selection as NodeSelection).node.type.name).toBe('image');
+      expect(editor.state.selection.from).toBe(posOf(editor, 'image'));
+      return editor;
+    };
+
+    const typed = selected();
+    typed.view.dispatch(typed.state.tr.insertText('Z'));
+    expect(blocks(typed)).toEqual(['paragraph:a', 'paragraph:Z', 'paragraph:b']);
+
+    const deleted = selected();
+    expect(deleted.commands.deleteSelection()).toBe(true);
+    expect(blocks(deleted)).toEqual(['paragraph:a', 'paragraph:b']);
+
+    const pasted = selected();
+    pasted.view.dispatch(
+      pasted.state.tr.replaceSelection(new Slice(Fragment.from(pasted.schema.text('P')), 0, 0)),
+    );
+    expect(blocks(pasted)).toEqual(['paragraph:a', 'paragraph:P', 'paragraph:b']);
+
+    const copied = selected().state.selection.content();
+    expect(copied.content.firstChild?.type.name).toBe('figure');
+    expect(copied.content.firstChild?.textContent).toBe('cap');
   });
 
   it('toggleImageCaption without an image selection does nothing', () => {

@@ -267,8 +267,12 @@ function parseBlockHtml(blockHtml: string, schema: Schema): PMDoc | null {
 function serializeDoc(doc: PMDoc, schema: Schema): Element {
   patchHtmlSerializer(schema);
   const container = elementFromString('');
-  const fragment = DOMSerializer.fromSchema(schema).serializeFragment(doc.content, { document });
-  for (const node of [...fragment.childNodes]) container.appendChild(document.adoptNode(node));
+  // Built in `container`'s inert (DOMParser) document: images in it are never fetched.
+  DOMSerializer.fromSchema(schema).serializeFragment(
+    doc.content,
+    { document: container.ownerDocument },
+    container,
+  );
   return container;
 }
 
@@ -519,9 +523,12 @@ function roundtripWholeDocument(blocksHtml: string, schema: Schema): Element | n
   try {
     const doc = ProseMirrorParser.fromSchema(schema).parse(elementFromString(blocksHtml));
     const container = elementFromString('');
-    const fragment = DOMSerializer.fromSchema(schema).serializeFragment(doc.content, { document });
-    // `container` belongs to the global document; adopt the fragment's nodes before appending.
-    for (const node of [...fragment.childNodes]) container.appendChild(document.adoptNode(node));
+    // Built in `container`'s inert (DOMParser) document: images in it are never fetched.
+    DOMSerializer.fromSchema(schema).serializeFragment(
+      doc.content,
+      { document: container.ownerDocument },
+      container,
+    );
     return container;
   } catch {
     return null;
@@ -540,9 +547,12 @@ function roundtripBlock(blockHtml: string, schema: Schema): Element | null {
     return null;
   }
   const container = elementFromString('');
-  const fragment = DOMSerializer.fromSchema(schema).serializeFragment(doc.content, { document });
-  // `container` belongs to the global document; adopt the fragment's nodes before appending.
-  for (const node of [...fragment.childNodes]) container.appendChild(document.adoptNode(node));
+  // Built in `container`'s inert (DOMParser) document: images in it are never fetched.
+  DOMSerializer.fromSchema(schema).serializeFragment(
+    doc.content,
+    { document: container.ownerDocument },
+    container,
+  );
   const elements = [...container.childNodes].filter((n) => n.nodeType === 1) as Element[];
   // Whitespace-only text siblings of the single element are insignificant; anything else fails.
   const significant = [...container.childNodes].filter(
