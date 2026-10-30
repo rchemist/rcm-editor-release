@@ -257,8 +257,11 @@ describe('figure / figcaption', () => {
       },
       para('b'),
     );
-    const blocks = (editor: Editor) =>
-      (editor.getJSON().content ?? []).map((n) => `${n.type}:${n.content?.[0]?.text ?? ''}`);
+    const blocks = (editor: Editor) => {
+      const out: string[] = [];
+      editor.state.doc.forEach((n) => out.push(`${n.type.name}:${n.textContent}`));
+      return out;
+    };
     const selected = () => {
       const editor = makeEditor(source);
       selectNode(editor, posOf(editor, 'image'));
