@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "paths": {
+      "@rchemist/editor": ["./src/index.ts"],
+      "@rchemist/editor/react": ["./src/react/index.ts"],
+      "@rchemist/editor/upload": ["./src/upload/index.ts"],
+      "@rchemist/editor/docparser": ["./src/docparser/index.ts"],
+      "@rchemist/editor/print": ["./src/print/index.ts"],
+      "@rchemist/editor/listgrid": ["./src/listgrid/index.ts"]
+    },
+    "types": ["node", "vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx", "apps/*/src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

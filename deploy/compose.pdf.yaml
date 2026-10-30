@@ -1,0 +1,40 @@
+# PDF 레퍼런스: Gotenberg Chromium 경로 (서버 사이드 렌더 전용).
+#
+# 사용:
+#   CI_RUN_ID=<unique> GOTENBERG_PORT=3000 docker compose -f deploy/compose.pdf.yaml -p pdf-<unique> up -d
+#   scripts/pdf-check.sh 이 과정을 자동화한다(고유 프로젝트명, trap 정리).
+#
+# 핀: gotenberg/gotenberg:8.37.0 (MIT). floating 태그(:8, :latest) 금지.
+# 다이제스트(manifest list, 2026-10-30 조회):
+#   sha256:f29984bd1e226bf1b93ba90af06000afa8b315853e99d27b9aaa41b93f15c769
+services:
+  gotenberg:
+    image: gotenberg/gotenberg:8.37.0
+    command:
+      - gotenberg
+      # 요청 제한: 전체 요청 처리 상한. 변환이 이 안에 끝나지 않으면 503.
+      - --api-timeout=60s
+      # Chromium 대기열 상한: 폭주 시 무한 대기가 아니라 503으로 실패. 0은 비활성화(무제한)이므로 두지 않는다.
+      - --chromium-max-queue-size=16
+      # 인쇄 HTML은 script-free이므로 Chromium 측 JS를 끈다. 동적 콘텐츠 대기(waitDelay 등)도 쓰지 않는다.
+      - --chromium-disable-javascript=true
+      # 해결된 IP 기준 차단: loopback·RFC1918·link-local·CGNAT·벤치마킹·IPv6 ULA로 향하는
+      # 내비게이션/하위 리소스를 거부. SSRF 1차 방어(도메인이 사설 IP로 해석되는 경우 포함).
+      - --chromium-deny-private-ips=true
+      # 정규식 기준 거부(allow-list·IP 판정보다 항상 우선). 반복 플래그 = OR.
+      # 1) file:// 전면 차단. 단 Gotenberg 자신의 /tmp 작업 디렉터리는 허용해야 multipart로 함께
+      #    보낸 index.html·글꼴·에셋이 file:///tmp/... 로 읽힌다(상류 기본값과 동일 취지).
+      - "--chromium-deny-list=^file:(?!///tmp/).*"
+      # 2) link-local 대역: 클라우드 메타데이터(169.254.169.254 포함) 차단. deny-private-ips와
+      #    이중 방어(DNS 해석 전 문자열 단계에서 차단).
+      - "--chromium-deny-list=^https?://169\\.254\\..*"
+      # 3) 클라우드 메타데이터 호스트명 차단(AWS/GCP).
+      - "--chromium-deny-list=^https?://(169\\.254\\.169\\.254|metadata\\.google\\.internal|instance-data\\.compute\\.internal)([:/].*)?$"
+      # allow-list는 기본값(All) 유지: 위 deny 규칙이 선행 거부하므로 별도 허용 목록을 두지 않는다.
+    ports:
+      # 호스트 충돌을 피하려면 GOTENBERG_PORT로 바꾼다. pdf-check.sh는 빈 포트를 골라 넘긴다.
+      - "${GOTENBERG_PORT:-3000}:3000"
+    labels:
+      # 실행별 추적용. pdf-check.sh가 CI_RUN_ID를 넘기면 컨테이너·볼륨·네트워크 식별에 쓴다.
+      - "ci.run=${CI_RUN_ID:-local}"
+    restart: "no"

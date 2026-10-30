@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+.vite-cache/
+
+# vendored editor packs
+vendor-pack/
+
+# test artifacts
+test-results/
+playwright-report/
+reports/
+.playwright-mcp/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# env
+.env
+.env.*
+!.env.example
+
+# ci cache
+.ci-cache/
+
+# next
+.next/
+next-env.d.ts

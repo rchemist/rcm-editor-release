@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  background: var(--rcm-editor-color-bg, Canvas);
+  color: var(--rcm-editor-color-fg, CanvasText);
+  font-family: var(--rcm-editor-font-family);
+}
+.pg-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--rcm-editor-color-border, currentColor);
+}
+.pg-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+.pg-pane {
+  min-width: 0;
+}
+.pg-views pre {
+  max-height: 40vh;
+  overflow: auto;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid var(--rcm-editor-color-border, currentColor);
+}
+.pg-error {
+  padding: 8px 16px;
+  color: #b00020;
+}
+
+/* print.html: the preview fills the page below a small padding. */
+main.pg {
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}

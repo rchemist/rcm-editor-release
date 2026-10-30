@@ -1,0 +1,64 @@
+{
+  "source": "sample-image.hwpx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-0.1.1+rcm-editor.2",
+  "doc": {
+    "content": [
+      {
+        "content": [
+          {
+            "text": "합성 이미지 문서",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "표 셀",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "attrs": {
+          "height": 3,
+          "src": "asset:sha256:b878082251e21a6976c11f3546633b04f6c77324e95bacabcb345785cfc607fa",
+          "width": 2
+        },
+        "type": "image"
+      },
+      {
+        "content": [
+          {
+            "text": "그림 다음 문단이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      }
+    ],
+    "type": "doc"
+  }
+}

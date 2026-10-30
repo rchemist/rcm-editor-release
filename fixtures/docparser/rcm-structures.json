@@ -1,0 +1,397 @@
+{
+  "source": "rcm-structures.hwpx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-0.1.1",
+  "doc": {
+    "content": [
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "• ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 목록 첫 항목",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "• ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 목록 둘째 수준",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "• ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 목록 셋째 수준",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "• ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 목록 다음 항목",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "3. ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 번호 시작",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "3.3. ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 중첩 번호",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "4. ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 번호 다음",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "text": "목록 사이 문단",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "text": "5. ",
+            "type": "text"
+          },
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 번호 계속",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "indent": "-5pt",
+          "level": 1,
+          "lineHeight": "1.6",
+          "marginLeft": "15pt",
+          "spaceAfter": "4pt",
+          "spaceBefore": "3pt",
+          "textAlign": "center"
+        },
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "bold"
+              },
+              {
+                "attrs": {
+                  "color": "#123456",
+                  "fontSize": "12pt"
+                },
+                "type": "textStyle"
+              }
+            ],
+            "text": "합성 개요",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "attrs": {
+                      "indent": "-5pt",
+                      "lineHeight": "1.6",
+                      "marginLeft": "15pt",
+                      "spaceAfter": "4pt",
+                      "spaceBefore": "3pt",
+                      "textAlign": "center"
+                    },
+                    "content": [
+                      {
+                        "text": "• ",
+                        "type": "text"
+                      },
+                      {
+                        "marks": [
+                          {
+                            "type": "bold"
+                          },
+                          {
+                            "attrs": {
+                              "color": "#123456",
+                              "fontSize": "12pt"
+                            },
+                            "type": "textStyle"
+                          }
+                        ],
+                        "text": "셀 안 목록",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "attrs": {
+          "height": 3,
+          "src": "asset:sha256:6b8e4242e23eb59c0a1b76189cf7a74ac9b30aa88300220ded8b7a2a0b060095",
+          "width": 2
+        },
+        "type": "image"
+      },
+      {
+        "attrs": {
+          "height": 3,
+          "src": "asset:sha256:6b8e4242e23eb59c0a1b76189cf7a74ac9b30aa88300220ded8b7a2a0b060095",
+          "width": 2
+        },
+        "type": "image"
+      },
+      {
+        "attrs": {
+          "height": 3,
+          "src": "asset:sha256:6b8e4242e23eb59c0a1b76189cf7a74ac9b30aa88300220ded8b7a2a0b060095",
+          "width": 2
+        },
+        "type": "image"
+      },
+      {
+        "attrs": {
+          "height": 3,
+          "src": "asset:sha256:6b8e4242e23eb59c0a1b76189cf7a74ac9b30aa88300220ded8b7a2a0b060095",
+          "width": 2
+        },
+        "type": "image"
+      }
+    ],
+    "type": "doc"
+  }
+}

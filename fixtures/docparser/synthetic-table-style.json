@@ -1,0 +1,400 @@
+{
+  "source": "synthetic-table-style.hwpx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-0.1.1",
+  "doc": {
+    "content": [
+      {
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "text": "제1장 표 서식 시험",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "text": "병합 셀, 변별 테두리, 배경색, 세로 정렬, 열 너비를 가진 표이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "backgroundColor": "#fff2cc",
+                  "borderBottom": "0.34pt dotted #00a000",
+                  "borderLeft": "1.42pt double #000000",
+                  "borderRight": "0.57pt dashed #0000c0",
+                  "borderTop": "1.13pt solid #c00000",
+                  "colspan": 2,
+                  "colwidth": [
+                    100,
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "middle"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "구분",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableHeader"
+              },
+              {
+                "attrs": {
+                  "backgroundColor": "#e2efda",
+                  "borderBottom": "0.85pt solid #404040",
+                  "borderTop": "0.85pt solid #404040",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "내용",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableHeader"
+              },
+              {
+                "attrs": {
+                  "backgroundColor": "#e2efda",
+                  "borderBottom": "0.85pt solid #404040",
+                  "borderTop": "0.85pt solid #404040",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "bottom"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "비고",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableHeader"
+              }
+            ],
+            "type": "tableRow"
+          },
+          {
+            "content": [
+              {
+                "attrs": {
+                  "backgroundColor": "#ddebf7",
+                  "borderBottom": "0.34pt solid #000000",
+                  "borderLeft": "0.34pt solid #000000",
+                  "borderRight": "0.34pt solid #000000",
+                  "borderTop": "0.34pt solid #000000",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 2,
+                  "verticalAlign": "middle"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "병합 셀",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "borderBottom": "0.34pt solid #808080",
+                  "borderLeft": "0.34pt solid #808080",
+                  "borderRight": "0.34pt solid #808080",
+                  "borderTop": "0.34pt solid #808080",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "가",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "borderBottom": "0.34pt solid #808080",
+                  "borderLeft": "0.34pt solid #808080",
+                  "borderRight": "0.34pt solid #808080",
+                  "borderTop": "0.34pt solid #808080",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "나",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "borderBottom": "0.34pt solid #808080",
+                  "borderLeft": "0.34pt solid #808080",
+                  "borderRight": "0.34pt solid #808080",
+                  "borderTop": "0.34pt solid #808080",
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "bottom"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "다",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          },
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "colwidth": [
+                    100
+                  ],
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "라",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "backgroundColor": "#fff2cc",
+                  "borderBottom": "0.34pt dotted #00a000",
+                  "borderLeft": "1.42pt double #000000",
+                  "borderRight": "0.57pt dashed #0000c0",
+                  "borderTop": "1.13pt solid #c00000",
+                  "colspan": 2,
+                  "colwidth": [
+                    100,
+                    100
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "middle"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "마 바 (가로 병합)",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 테두리 종류와 배경색을 달리한 작은 표이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "테두리 없음",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "backgroundColor": "#e2efda",
+                  "borderBottom": "0.85pt solid #404040",
+                  "borderTop": "0.85pt solid #404040",
+                  "colspan": 1,
+                  "colwidth": [
+                    150
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "middle"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "위아래 선만",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          },
+          {
+            "content": [
+              {
+                "attrs": {
+                  "backgroundColor": "#fff2cc",
+                  "borderBottom": "0.34pt dotted #00a000",
+                  "borderLeft": "1.42pt double #000000",
+                  "borderRight": "0.57pt dashed #0000c0",
+                  "borderTop": "1.13pt solid #c00000",
+                  "colspan": 1,
+                  "colwidth": [
+                    150
+                  ],
+                  "rowspan": 1,
+                  "verticalAlign": "bottom"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "네 변 서로 다름",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "backgroundColor": "#ddebf7",
+                  "borderBottom": "0.34pt solid #000000",
+                  "borderLeft": "0.34pt solid #000000",
+                  "borderRight": "0.34pt solid #000000",
+                  "borderTop": "0.34pt solid #000000",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "배경색만",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "type": "doc"
+  }
+}

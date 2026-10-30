@@ -1,0 +1,39 @@
+{
+  "comment": "docparser tiptap/fonts.go FontFamily(name, family) 포팅의 기대값. 각 stack은 Go 논리(quote: \\ → \\\\, \" → \\\" 단일 패스 치환)로 손계산. family 항목의 family 값은 name이 목록 밖일 때만 뜻을 가짐.",
+  "serif": [
+    { "name": "함초롬바탕", "family": "", "stack": "\"함초롬바탕\", \"HCR Batang\", \"Noto Serif KR\", serif" },
+    { "name": "한컴바탕", "family": "", "stack": "\"한컴바탕\", \"Noto Serif KR\", serif" },
+    { "name": "바탕", "family": "", "stack": "\"바탕\", \"Noto Serif KR\", serif" },
+    { "name": "바탕체", "family": "", "stack": "\"바탕체\", \"Noto Serif KR\", serif" },
+    { "name": "궁서", "family": "", "stack": "\"궁서\", \"Noto Serif KR\", serif" },
+    { "name": "나눔명조", "family": "", "stack": "\"나눔명조\", \"Noto Serif KR\", serif" },
+    { "name": "휴먼명조", "family": "", "stack": "\"휴먼명조\", \"Noto Serif KR\", serif" }
+  ],
+  "sans": [
+    { "name": "함초롬돋움", "family": "", "stack": "\"함초롬돋움\", \"HCR Dotum\", \"Noto Sans KR\", sans-serif" },
+    { "name": "한컴돋움", "family": "", "stack": "\"한컴돋움\", \"Noto Sans KR\", sans-serif" },
+    { "name": "돋움", "family": "", "stack": "\"돋움\", \"Noto Sans KR\", sans-serif" },
+    { "name": "돋움체", "family": "", "stack": "\"돋움체\", \"Noto Sans KR\", sans-serif" },
+    { "name": "굴림", "family": "", "stack": "\"굴림\", \"Noto Sans KR\", sans-serif" },
+    { "name": "굴림체", "family": "", "stack": "\"굴림체\", \"Noto Sans KR\", sans-serif" },
+    { "name": "맑은 고딕", "family": "", "stack": "\"맑은 고딕\", \"Noto Sans KR\", sans-serif" },
+    { "name": "나눔고딕", "family": "", "stack": "\"나눔고딕\", \"Noto Sans KR\", sans-serif" },
+    { "name": "HY헤드라인M", "family": "", "stack": "\"HY헤드라인M\", \"Noto Sans KR\", sans-serif" },
+    { "name": "HY견고딕", "family": "", "stack": "\"HY견고딕\", \"Noto Sans KR\", sans-serif" }
+  ],
+  "family": [
+    { "name": "custom", "family": "MYUNGJO", "stack": "\"custom\", serif" },
+    { "name": "custom", "family": "myungjo", "stack": "\"custom\", serif" },
+    { "name": "custom", "family": "FCAT_MYUNGJO", "stack": "\"custom\", serif" },
+    { "name": "custom", "family": "fcat_myungjo", "stack": "\"custom\", serif" },
+    { "name": "custom", "family": "명조", "stack": "\"custom\", serif" },
+    { "name": "custom", "family": "GOTHIC", "stack": "\"custom\", sans-serif" }
+  ],
+  "fallback": [
+    { "name": "Arial", "family": "", "stack": "\"Arial\", sans-serif" },
+    { "name": "명조상조", "family": "", "stack": "\"명조상조\", sans-serif" },
+    { "name": "A\"B", "family": "", "stack": "\"A\\\"B\", sans-serif" },
+    { "name": "A\\B", "family": "", "stack": "\"A\\\\B\", sans-serif" },
+    { "name": "A\"B\\C", "family": "", "stack": "\"A\\\"B\\\\C\", sans-serif" }
+  ]
+}

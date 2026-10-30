@@ -1,0 +1,14 @@
+{
+  "name": "consumer-next-app",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@tiptap/extension-highlight": "^3.32.1",
+    "next": "^16.4.3",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  }
+}

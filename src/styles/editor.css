@@ -1,0 +1,980 @@
+.rcm-editor {
+  background: var(--rcm-editor-color-bg);
+  color: var(--rcm-editor-color-fg);
+  border: var(--rcm-editor-border-width) solid var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+  font-family: var(--rcm-editor-font-family);
+  font-size: var(--rcm-editor-font-size);
+  line-height: var(--rcm-editor-line-height);
+  padding: var(--rcm-editor-space-3);
+}
+.rcm-editor .ProseMirror {
+  min-height: var(--rcm-editor-min-height, auto);
+  outline: none;
+}
+.rcm-editor:focus-within {
+  border-color: var(--rcm-editor-color-accent);
+  box-shadow: 0 0 0 1px var(--rcm-editor-color-accent);
+}
+/* read-only: a plain view of the document */
+.rcm-editor.rcm-editor--readonly {
+  border-color: transparent;
+  box-shadow: none;
+}
+.rcm-editor--readonly .ProseMirror {
+  caret-color: transparent;
+}
+
+/* --- upload placeholder / error widgets (decorations) --- */
+.rcm-editor .rcm-upload-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rcm-editor-space-2);
+  max-width: 100%;
+  padding: var(--rcm-editor-space-1) var(--rcm-editor-space-2);
+  border: 1px dashed var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+  background: var(--rcm-editor-color-surface);
+  color: var(--rcm-editor-color-muted);
+  font-size: 0.9em;
+  vertical-align: middle;
+  user-select: none;
+}
+.rcm-editor .rcm-upload-widget--error {
+  border-color: var(--rcm-editor-color-warning-border);
+  background: var(--rcm-editor-color-warning-bg);
+  color: var(--rcm-editor-color-warning-fg);
+}
+.rcm-editor .rcm-upload-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 16em;
+}
+.rcm-editor .rcm-upload-track {
+  width: 6em;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--rcm-editor-color-border);
+  overflow: hidden;
+}
+.rcm-editor .rcm-upload-bar {
+  display: block;
+  height: 100%;
+  background: var(--rcm-editor-color-accent);
+  transition: width 120ms linear;
+}
+.rcm-editor .rcm-upload-btn {
+  padding: 0 var(--rcm-editor-space-1);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Content rules (figure, page break, textBox, …) live in content.css (shared with print). */
+
+/* Edit-mode table guide lines: every cell edge shows a faint dashed line while editing,
+ * even when the document's borders are 0/none/partial. An outline never changes layout or the
+ * stored HTML; read-only views and print (content.css only) stay unchanged. `:where` keeps the
+ * guide below `.selectedCell`, whose accent outline must win. */
+.rcm-editor
+  :where(.ProseMirror[contenteditable='true'] td, .ProseMirror[contenteditable='true'] th) {
+  outline: 1px dashed var(--rcm-editor-color-table-guide);
+  outline-offset: -1px;
+}
+.rcm-editor [data-type='page-break'].ProseMirror-selectednode {
+  border-top-color: var(--rcm-editor-color-accent);
+}
+
+/* Footnote, equation-chip, placeholder, table-base and unsupported content rules live in
+ * content.css (shared with print). */
+.rcm-editor .rcm-equation.ProseMirror-selectednode,
+.rcm-editor .rcm-equation[data-editing='true'] {
+  border-color: var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-equation-popover {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 4px);
+  left: 0;
+  font-style: normal;
+}
+.rcm-editor .rcm-equation-input {
+  min-width: 18em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  color: var(--rcm-editor-color-fg);
+  background: var(--rcm-editor-color-bg);
+  border: 1px solid var(--rcm-editor-color-accent);
+  border-radius: var(--rcm-editor-radius);
+  padding: var(--rcm-editor-space-1) var(--rcm-editor-space-2);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+}
+
+.rcm-editor .rcm-placeholder.ProseMirror-selectednode {
+  outline: 2px solid var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-unsupported.ProseMirror-selectednode {
+  outline: 2px solid var(--rcm-editor-color-accent);
+}
+
+/* --- toolbar --- */
+.rcm-editor {
+  --rcm-tb-btn-size: 32px;
+}
+.rcm-editor .rcm-tb {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2px;
+  box-sizing: border-box;
+  /* the bar takes the host's width and folds into "more"; its nowrap items must not size a host
+     whose minimum is min-content (grid/flex items with min-width: auto) */
+  contain: inline-size;
+  /* bleed to the root border */
+  margin: calc(-1 * var(--rcm-editor-space-3)) calc(-1 * var(--rcm-editor-space-3))
+    var(--rcm-editor-space-3);
+  padding: var(--rcm-editor-space-1) var(--rcm-editor-space-2);
+  background: var(--rcm-editor-toolbar-bg);
+  color: var(--rcm-editor-toolbar-fg);
+  border-bottom: 1px solid var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius) var(--rcm-editor-radius) 0 0;
+  font-size: 13px;
+  line-height: 1.2;
+}
+.rcm-editor .rcm-tb--wrap {
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+.rcm-editor .rcm-tb-entry {
+  position: relative;
+  flex: none;
+}
+.rcm-editor .rcm-tb-popup {
+  position: relative;
+}
+.rcm-editor .rcm-tb-slot {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+.rcm-editor .rcm-tb-sep {
+  flex: none;
+  align-self: stretch;
+  width: 1px;
+  margin: 4px 4px;
+  background: var(--rcm-editor-color-border);
+}
+.rcm-editor .rcm-tb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--rcm-tb-btn-size);
+  height: var(--rcm-tb-btn-size);
+  padding: 0 6px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rcm-editor-toolbar-fg);
+  font: inherit;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tb-btn:hover:not(:disabled) {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-tb-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.rcm-editor .rcm-tb-btn[aria-pressed='true'],
+.rcm-editor .rcm-tb-btn[data-active],
+.rcm-editor .rcm-tb-btn[aria-expanded='true'] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+  border-color: var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-tb-btn:focus-visible,
+.rcm-editor .rcm-tb-menuitem:focus-visible,
+.rcm-editor .rcm-tb-swatch:focus-visible,
+.rcm-editor .rcm-tb-textbtn:focus-visible,
+.rcm-editor .rcm-tb-input:focus-visible {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: 1px;
+}
+.rcm-editor .rcm-tb-icon {
+  display: block;
+}
+.rcm-editor .rcm-tb-glyph {
+  font-size: 15px;
+  line-height: 1;
+}
+/* Glyph characters are CSS content, not DOM text: the button's injected aria-label stays its
+ * whole accessible name (axe label-content-name-mismatch; 2+ visible characters would clash). */
+.rcm-editor .rcm-tb-glyph--bold::before {
+  content: 'B';
+  font-weight: 700;
+}
+.rcm-editor .rcm-tb-glyph--italic::before {
+  content: 'I';
+  font-style: italic;
+  font-family: serif;
+}
+.rcm-editor .rcm-tb-glyph--underline::before {
+  content: 'U';
+  text-decoration: underline;
+}
+.rcm-editor .rcm-tb-glyph--strike::before {
+  content: 'S';
+  text-decoration: line-through;
+}
+.rcm-editor .rcm-tb-glyph--superscript::before {
+  content: 'x²';
+}
+.rcm-editor .rcm-tb-glyph--subscript::before {
+  content: 'x₂';
+}
+.rcm-editor .rcm-tb-glyph--color::before {
+  content: 'A';
+  font-weight: 700;
+}
+.rcm-editor .rcm-tb-glyph--highlight::before {
+  content: 'ab';
+}
+.rcm-editor .rcm-tb-btn--menu {
+  gap: 4px;
+  justify-content: space-between;
+}
+/* Compact value triggers: capped at ~6em (ellipsis inside) so more items fit before the
+ * "more" (…) menu folds the bar. */
+.rcm-editor .rcm-tb-btn--font,
+.rcm-editor .rcm-tb-btn--heading {
+  width: 6em;
+}
+.rcm-editor .rcm-tb-btn--size {
+  width: 62px;
+}
+.rcm-editor .rcm-tb-btn--icon-menu {
+  width: 52px;
+}
+.rcm-editor .rcm-tb-menu-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* The current value shown on a menu trigger (font name, pt size) is CSS content from
+ * data-value: like the glyphs above it must stay out of the DOM text the button shows,
+ * because the accessible name is exactly the injected label. */
+.rcm-editor .rcm-tb-menu-text[data-value]::before {
+  content: attr(data-value);
+}
+.rcm-editor .rcm-tb-caret {
+  flex: none;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+}
+.rcm-editor .rcm-tb-colorcell {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.rcm-editor .rcm-tb-colorbar {
+  display: block;
+  width: 16px;
+  height: 3px;
+  border-radius: 1px;
+  outline: 1px solid var(--rcm-editor-color-border);
+}
+
+/* panels: menus, popovers, the overflow panel */
+.rcm-editor .rcm-tb-panel {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  box-sizing: border-box;
+  max-width: calc(100vw - 16px);
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: var(--rcm-editor-radius);
+  box-shadow: var(--rcm-editor-menu-shadow);
+  padding: var(--rcm-editor-space-1);
+}
+.rcm-editor .rcm-tb-panel--end,
+.rcm-editor .rcm-tb-panel--more {
+  left: auto;
+  right: 0;
+}
+.rcm-editor .rcm-tb-panel--more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 16px));
+}
+.rcm-editor .rcm-tb-menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.rcm-editor .rcm-tb-menuitem {
+  display: block;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tb-menuitem:hover {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-tb-menuitem[aria-checked='true'] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+  font-weight: 600;
+}
+.rcm-editor .rcm-tb-colors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rcm-editor-space-2);
+  width: 192px;
+}
+.rcm-editor .rcm-tb-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+.rcm-editor .rcm-tb-swatch {
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 28px;
+  padding: 0;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tb-swatch[aria-pressed='true'] {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: 1px;
+}
+.rcm-editor .rcm-tb-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rcm-editor-space-2);
+}
+.rcm-editor .rcm-tb-field input[type='color'] {
+  width: 40px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: transparent;
+}
+.rcm-editor .rcm-tb-textbtn {
+  padding: 6px 10px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tb-textbtn:hover:not(:disabled) {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-tb-textbtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.rcm-editor .rcm-tb-linkform {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rcm-editor-space-2);
+  width: 260px;
+  max-width: 100%;
+}
+.rcm-editor .rcm-tb-input {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  font: inherit;
+}
+
+/* --- tables: editing aids (base table rules live in content.css) --- */
+.rcm-editor .selectedCell {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: -2px;
+}
+.rcm-editor .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--rcm-editor-cell-selected);
+  pointer-events: none;
+}
+.rcm-editor .column-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  bottom: -2px;
+  z-index: 3;
+  width: 4px;
+  background: var(--rcm-editor-color-accent);
+  pointer-events: none;
+}
+.rcm-editor.resize-cursor,
+.rcm-editor .resize-cursor {
+  cursor: col-resize;
+}
+.rcm-editor .tableWrapper {
+  overflow-x: auto;
+}
+
+/* table grid picker */
+.rcm-editor .rcm-tb-tablegrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rcm-editor-space-1);
+}
+.rcm-editor .rcm-tb-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 18px);
+  gap: 2px;
+}
+.rcm-editor .rcm-tb-gridcell {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tb-gridcell[data-hot] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+  border-color: var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-tb-gridcell:focus-visible {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: 1px;
+}
+.rcm-editor .rcm-tb-gridsize {
+  text-align: center;
+}
+
+/* cell context menu */
+.rcm-editor .rcm-tm {
+  position: fixed;
+  z-index: 40;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: calc(100vw - 8px);
+  max-height: calc(100vh - 8px);
+  overflow-y: auto;
+  padding: var(--rcm-editor-space-1);
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: var(--rcm-editor-radius);
+  box-shadow: var(--rcm-editor-menu-shadow);
+  font-size: 13px;
+}
+.rcm-editor .rcm-tm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rcm-editor-space-2);
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.rcm-editor .rcm-tm-item:hover:not([aria-disabled='true']),
+.rcm-editor .rcm-tm-item:focus-visible,
+.rcm-editor .rcm-tm-swatch:focus-visible {
+  background: var(--rcm-editor-toolbar-hover-bg);
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: -2px;
+}
+.rcm-editor .rcm-tm-item[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: default;
+}
+.rcm-editor .rcm-tm-item[aria-expanded='true'] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+}
+.rcm-editor .rcm-tm-arrow {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+}
+.rcm-editor .rcm-tm-sep {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--rcm-editor-menu-border);
+}
+.rcm-editor .rcm-tm-sub {
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--rcm-editor-space-3);
+}
+.rcm-editor .rcm-tm-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+.rcm-editor .rcm-tm-swatches .rcm-tm-subitem {
+  grid-column: 1 / -1;
+}
+.rcm-editor .rcm-tm-swatch {
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  min-height: 24px;
+  padding: 0;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* --- image bar + resize handles --- */
+.rcm-editor .rcm-ib-wrap {
+  position: fixed;
+  z-index: 30;
+  pointer-events: none;
+}
+.rcm-editor .rcm-ib {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  box-sizing: border-box;
+  padding: var(--rcm-editor-space-1);
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: var(--rcm-editor-radius);
+  box-shadow: var(--rcm-editor-menu-shadow);
+  font-size: 13px;
+  line-height: 1.2;
+  pointer-events: auto;
+}
+.rcm-editor .rcm-ib--below {
+  top: calc(100% + 6px);
+  bottom: auto;
+}
+.rcm-editor .rcm-ib-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.rcm-editor .rcm-ib-btn:hover {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-ib-btn[aria-pressed='true'],
+.rcm-editor .rcm-ib-btn[aria-expanded='true'] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+  border-color: var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-ib-btn:focus-visible,
+.rcm-editor .rcm-ib-textbtn:focus-visible,
+.rcm-editor .rcm-ib-input:focus-visible {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: 1px;
+}
+.rcm-editor .rcm-ib-icon {
+  display: block;
+}
+.rcm-editor .rcm-ib-altwrap {
+  position: relative;
+  display: flex;
+}
+.rcm-editor .rcm-ib-panel {
+  position: absolute;
+  z-index: 31;
+  top: calc(100% + 4px);
+  left: 0;
+  box-sizing: border-box;
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: var(--rcm-editor-radius);
+  box-shadow: var(--rcm-editor-menu-shadow);
+  padding: var(--rcm-editor-space-1);
+}
+.rcm-editor .rcm-ib-altform {
+  display: flex;
+  gap: var(--rcm-editor-space-1);
+  align-items: center;
+}
+.rcm-editor .rcm-ib-input {
+  box-sizing: border-box;
+  width: 200px;
+  padding: 6px 8px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  font: inherit;
+}
+.rcm-editor .rcm-ib-textbtn {
+  padding: 6px 10px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rcm-editor .rcm-ib-textbtn:hover {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-ib-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  background: var(--rcm-editor-menu-bg);
+  border: 2px solid var(--rcm-editor-color-accent);
+  border-radius: 3px;
+  box-shadow: var(--rcm-editor-menu-shadow);
+  touch-action: none;
+  pointer-events: auto;
+}
+.rcm-editor .rcm-ib-handle[data-corner='nw'] {
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  cursor: nwse-resize;
+}
+.rcm-editor .rcm-ib-handle[data-corner='se'] {
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+  cursor: nwse-resize;
+}
+.rcm-editor .rcm-ib-handle[data-corner='ne'] {
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  cursor: nesw-resize;
+}
+.rcm-editor .rcm-ib-handle[data-corner='sw'] {
+  left: 0;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  cursor: nesw-resize;
+}
+
+/* --- find & replace panel --- */
+.rcm-editor .rcm-find {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rcm-editor-space-1);
+  margin: 0 0 var(--rcm-editor-space-2);
+  padding: var(--rcm-editor-space-2);
+  background: var(--rcm-editor-toolbar-bg);
+  color: var(--rcm-editor-toolbar-fg);
+  border-bottom: 1px solid var(--rcm-editor-color-border);
+  font-size: 13px;
+  line-height: 1.2;
+}
+.rcm-editor .rcm-find-row {
+  display: flex;
+  align-items: center;
+  gap: var(--rcm-editor-space-1);
+  flex-wrap: wrap;
+}
+.rcm-editor .rcm-find-input {
+  box-sizing: border-box;
+  width: 200px;
+  max-width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  font: inherit;
+}
+.rcm-editor .rcm-find-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.rcm-editor .rcm-find-btn:hover:not(:disabled) {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-find-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.rcm-editor .rcm-find-btn[aria-pressed='true'] {
+  background: var(--rcm-editor-toolbar-pressed-bg);
+  border-color: var(--rcm-editor-color-accent);
+}
+.rcm-editor .rcm-find-btn:focus-visible,
+.rcm-editor .rcm-find-textbtn:focus-visible,
+.rcm-editor .rcm-find-input:focus-visible {
+  outline: 2px solid var(--rcm-editor-color-accent);
+  outline-offset: 1px;
+}
+.rcm-editor .rcm-find-glyph {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+.rcm-editor .rcm-find-icon {
+  display: block;
+}
+.rcm-editor .rcm-find-textbtn {
+  padding: 6px 10px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rcm-editor .rcm-find-textbtn:hover:not(:disabled) {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+.rcm-editor .rcm-find-textbtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.rcm-editor .rcm-find-count {
+  margin-left: auto;
+  /* toolbar-fg, not color-muted: muted-on-toolbar-bg misses 4.5:1 in light and dark. */
+  color: var(--rcm-editor-toolbar-fg);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* search result decorations: the extension's own <style> injection is off (feature defaults) */
+.rcm-editor .find-and-replace-result {
+  background-color: var(--rcm-editor-find-bg);
+}
+.rcm-editor .find-and-replace-result-current {
+  background-color: var(--rcm-editor-find-current-bg);
+}
+
+/* --- HTML source mode: the lazily loaded CodeMirror editor replaces the editing area --- */
+.rcm-editor .rcm-source {
+  min-height: var(--rcm-editor-min-height, auto);
+  box-sizing: border-box;
+}
+.rcm-editor .rcm-source .cm-editor {
+  min-height: inherit;
+}
+.rcm-editor .rcm-cm {
+  border: var(--rcm-editor-border-width) solid var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+  overflow: hidden;
+}
+.rcm-editor .rcm-cm .cm-editor {
+  background: var(--rcm-editor-color-bg);
+  color: var(--rcm-editor-color-fg);
+}
+.rcm-editor .rcm-cm .cm-scroller {
+  font-family: var(--rcm-editor-font-mono);
+  line-height: 1.55;
+}
+.rcm-editor .rcm-cm .cm-gutters {
+  background: var(--rcm-editor-color-surface);
+  color: var(--rcm-editor-color-muted);
+  border-right: 1px solid var(--rcm-editor-color-border);
+}
+.rcm-editor .rcm-cm .cm-content {
+  padding: var(--rcm-editor-space-2) 0;
+}
+.rcm-editor .rcm-cm .cm-panels {
+  background: var(--rcm-editor-color-surface);
+  color: var(--rcm-editor-color-fg);
+  border-bottom: 1px solid var(--rcm-editor-color-border);
+}
+.rcm-editor .rcm-cm .cm-panel input,
+.rcm-editor .rcm-cm .cm-panel button {
+  font: inherit;
+}
+
+/* raw fragments in the WYSIWYG area: bordered previews; selection gets the accent */
+.rcm-editor [data-rcm-raw-html-preview] {
+  border: 1px dashed var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+}
+.rcm-editor [data-rcm-raw-html-preview].ProseMirror-selectednode {
+  border-color: var(--rcm-editor-color-accent);
+}
+
+/* preservation notice after a source apply / raw-fragment action */
+.rcm-editor .rcm-html-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rcm-editor-space-2);
+  margin: 0 0 var(--rcm-editor-space-2);
+  padding: var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+  border: 1px solid var(--rcm-editor-color-warning-border);
+  border-radius: var(--rcm-editor-radius);
+  background: var(--rcm-editor-color-warning-bg);
+  color: var(--rcm-editor-color-warning-fg);
+  font-size: 0.92em;
+}
+.rcm-editor .rcm-html-notice-title {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.rcm-editor .rcm-html-notice-list {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rcm-editor .rcm-html-notice-item {
+  overflow-wrap: anywhere;
+}
+.rcm-editor .rcm-html-notice-item + .rcm-html-notice-item {
+  margin-top: 2px;
+}
+.rcm-editor .rcm-html-notice-close {
+  padding: 0 var(--rcm-editor-space-1);
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+.rcm-editor .rcm-html-notice-close:hover {
+  background: var(--rcm-editor-color-warning-border);
+}
+
+/* raw-fragment popover (double-click / Enter on a selected raw node) */
+.rcm-editor .rcm-raw-pop {
+  position: fixed;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rcm-editor-space-2);
+  width: min(560px, calc(100vw - 24px));
+  padding: var(--rcm-editor-space-2);
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: var(--rcm-editor-radius);
+  background: var(--rcm-editor-menu-bg);
+  color: var(--rcm-editor-menu-fg);
+  box-shadow: var(--rcm-editor-menu-shadow);
+}
+.rcm-editor .rcm-raw-pop-editor {
+  min-height: 120px;
+}
+.rcm-editor .rcm-raw-pop-editor .cm-scroller {
+  max-height: 40vh;
+}
+.rcm-editor .rcm-raw-pop-actions {
+  display: flex;
+  gap: var(--rcm-editor-space-2);
+}
+.rcm-editor .rcm-raw-textbtn {
+  padding: 6px 10px;
+  border: 1px solid var(--rcm-editor-menu-border);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rcm-editor .rcm-raw-textbtn:hover {
+  background: var(--rcm-editor-toolbar-hover-bg);
+}
+
+/* --- print preview chrome (the pages themselves live in the preview iframe) --- */
+.rcm-editor .rcm-print-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--rcm-editor-space-2);
+  color: var(--rcm-editor-toolbar-fg);
+  white-space: nowrap;
+}
+.rcm-editor .rcm-print-view {
+  box-sizing: border-box;
+  overflow: auto;
+  height: var(--rcm-print-preview-height, 640px);
+  border: 1px solid var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+  background: var(--rcm-editor-color-surface);
+}
+.rcm-editor .rcm-print-sizer {
+  position: relative;
+}
+.rcm-editor .rcm-print-frame {
+  display: block;
+  width: 100%;
+  height: var(--rcm-print-preview-height, 640px);
+  border: 0;
+  transform-origin: 0 0;
+  background: transparent;
+}
+.rcm-editor .rcm-print-sizer {
+  margin: 0 auto;
+}

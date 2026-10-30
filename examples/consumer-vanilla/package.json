@@ -1,0 +1,12 @@
+{
+  "name": "consumer-vanilla",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
+}

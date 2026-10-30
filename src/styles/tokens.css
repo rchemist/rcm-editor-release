@@ -1,0 +1,104 @@
+:root {
+  /* Sentinel read by <RcmEditor> to detect a missing styles.css import (dev warning). */
+  --rcm-editor-styles-loaded: 1;
+  --rcm-editor-color-bg: #ffffff;
+  --rcm-editor-color-fg: #1a1a1a;
+  --rcm-editor-color-muted: #6b7280;
+  --rcm-editor-color-accent: #2563eb;
+  --rcm-editor-color-border: #d1d5db;
+  /* Edit-mode table guide lines (screen only; never printed or stored). */
+  --rcm-editor-color-table-guide: rgba(107, 114, 128, 0.55);
+  --rcm-editor-border-width: 1px;
+  --rcm-editor-radius: 6px;
+  --rcm-editor-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --rcm-editor-font-size: 14px;
+  --rcm-editor-line-height: 1.6;
+  --rcm-editor-space-1: 4px;
+  --rcm-editor-space-2: 8px;
+  --rcm-editor-space-3: 12px;
+  --rcm-editor-space-4: 16px;
+  --rcm-editor-color-surface: #f3f4f6;
+  --rcm-editor-cell-selected: rgb(37 99 235 / 22%);
+  --rcm-editor-find-bg: rgb(250 204 21 / 45%);
+  --rcm-editor-find-current-bg: rgb(249 115 22 / 55%);
+  --rcm-editor-toolbar-bg: #f3f4f6;
+  --rcm-editor-toolbar-fg: #1a1a1a;
+  --rcm-editor-toolbar-hover-bg: #e5e7eb;
+  --rcm-editor-toolbar-pressed-bg: #dbeafe;
+  --rcm-editor-menu-bg: #ffffff;
+  --rcm-editor-menu-fg: #1a1a1a;
+  --rcm-editor-menu-border: #d1d5db;
+  --rcm-editor-menu-shadow: 0 6px 18px rgb(0 0 0 / 18%);
+  --rcm-editor-color-warning-bg: #fffbeb;
+  --rcm-editor-color-warning-fg: #92400e;
+  --rcm-editor-color-warning-border: #f59e0b;
+  --rcm-editor-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --rcm-editor-cm-tag: #116329;
+  --rcm-editor-cm-attr: #0550ae;
+  --rcm-editor-cm-string: #953800;
+  --rcm-editor-cm-comment: #6e7781;
+  --rcm-editor-cm-bracket: #57606a;
+  --rcm-editor-font-math:
+    'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Times New Roman', serif;
+}
+
+[data-theme='dark'] {
+  --rcm-editor-color-bg: #111827;
+  --rcm-editor-color-fg: #f3f4f6;
+  --rcm-editor-color-muted: #9ca3af;
+  --rcm-editor-color-accent: #60a5fa;
+  --rcm-editor-color-border: #374151;
+  --rcm-editor-color-table-guide: rgba(156, 163, 175, 0.5);
+  --rcm-editor-color-surface: #1f2937;
+  --rcm-editor-color-warning-bg: #3b2a0a;
+  --rcm-editor-color-warning-fg: #fcd34d;
+  --rcm-editor-color-warning-border: #b45309;
+  --rcm-editor-cm-tag: #7ee787;
+  --rcm-editor-cm-attr: #79c0ff;
+  --rcm-editor-cm-string: #ffa657;
+  --rcm-editor-cm-comment: #8b949e;
+  --rcm-editor-cm-bracket: #c9d1d9;
+  --rcm-editor-cell-selected: rgb(96 165 250 / 32%);
+  --rcm-editor-find-bg: rgb(250 204 21 / 35%);
+  --rcm-editor-find-current-bg: rgb(249 115 22 / 50%);
+  --rcm-editor-toolbar-bg: #1f2937;
+  --rcm-editor-toolbar-fg: #f3f4f6;
+  --rcm-editor-toolbar-hover-bg: #374151;
+  --rcm-editor-toolbar-pressed-bg: #1e3a8a;
+  --rcm-editor-menu-bg: #111827;
+  --rcm-editor-menu-fg: #f3f4f6;
+  --rcm-editor-menu-border: #4b5563;
+  --rcm-editor-menu-shadow: 0 6px 18px rgb(0 0 0 / 55%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --rcm-editor-color-bg: #111827;
+    --rcm-editor-color-fg: #f3f4f6;
+    --rcm-editor-color-muted: #9ca3af;
+    --rcm-editor-color-accent: #60a5fa;
+    --rcm-editor-color-border: #374151;
+    --rcm-editor-color-table-guide: rgba(156, 163, 175, 0.5);
+    --rcm-editor-color-table-guide: rgba(156, 163, 175, 0.5);
+    --rcm-editor-color-surface: #1f2937;
+    --rcm-editor-color-warning-bg: #3b2a0a;
+    --rcm-editor-color-warning-fg: #fcd34d;
+    --rcm-editor-color-warning-border: #b45309;
+    --rcm-editor-cm-tag: #7ee787;
+    --rcm-editor-cm-attr: #79c0ff;
+    --rcm-editor-cm-string: #ffa657;
+    --rcm-editor-cm-comment: #8b949e;
+    --rcm-editor-cm-bracket: #c9d1d9;
+    --rcm-editor-cell-selected: rgb(96 165 250 / 32%);
+    --rcm-editor-find-bg: rgb(250 204 21 / 35%);
+    --rcm-editor-find-current-bg: rgb(249 115 22 / 50%);
+    --rcm-editor-toolbar-bg: #1f2937;
+    --rcm-editor-toolbar-fg: #f3f4f6;
+    --rcm-editor-toolbar-hover-bg: #374151;
+    --rcm-editor-toolbar-pressed-bg: #1e3a8a;
+    --rcm-editor-menu-bg: #111827;
+    --rcm-editor-menu-fg: #f3f4f6;
+    --rcm-editor-menu-border: #4b5563;
+    --rcm-editor-menu-shadow: 0 6px 18px rgb(0 0 0 / 55%);
+  }
+}

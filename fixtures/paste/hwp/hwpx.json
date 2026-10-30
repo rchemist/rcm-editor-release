@@ -1,0 +1,189 @@
+[
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0pt",
+      "marginRight": null,
+      "spaceAfter": "8.0pt",
+      "marginLeft": "42.55pt",
+      "indent": "-14.17pt",
+      "lineHeight": "150%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#1f3864",
+              "fontFamily": "\"함초롬바탕\"",
+              "fontSize": "10.5pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "HWPX(병합문서) 클립보드 형식의 문단입니다. 네임스페이스 마커로 HWPX로 분류됩니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": null,
+      "marginRight": null,
+      "spaceAfter": null,
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "18.0pt",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#c00000",
+              "fontFamily": "\"함초롬고딕\"",
+              "fontSize": "14.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "pt 크기와 색상, 줄 간격을 가진 문단입니다."
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "attrs": {
+      "unsupportedAttrs": null,
+      "width": 454,
+      "border": "0.5pt solid #000000",
+      "align": null
+    },
+    "content": [
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                170
+              ],
+              "align": null,
+              "backgroundColor": "#e2efda",
+              "borderTop": "0.5pt solid #000000",
+              "borderRight": "0.5pt solid #000000",
+              "borderBottom": "0.5pt solid #000000",
+              "borderLeft": "0.5pt solid #000000",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.5pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "첫 열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                170
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "0.5pt solid #000000",
+              "borderRight": "0.5pt solid #000000",
+              "borderBottom": "0.5pt solid #000000",
+              "borderLeft": "0.5pt solid #000000",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.5pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "둘째 열"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

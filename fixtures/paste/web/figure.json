@@ -1,0 +1,79 @@
+[
+  {
+    "type": "figure",
+    "attrs": {
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "unsupportedAttrs": null,
+          "src": "https://example.com/diagram.png",
+          "alt": "배포 다이어그램",
+          "title": null,
+          "width": 320,
+          "height": 180,
+          "align": null
+        }
+      },
+      {
+        "type": "figcaption",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "backgroundColor": null,
+                  "color": "#595959",
+                  "fontFamily": null,
+                  "fontSize": "10pt",
+                  "letterSpacing": null,
+                  "fontStretch": null
+                }
+              }
+            ],
+            "text": "그림 1 배포 다이어그램"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": null,
+      "marginRight": null,
+      "spaceAfter": null,
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "1.5",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": null,
+              "fontSize": "12pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "그림 다음의 본문 문단입니다."
+      }
+    ]
+  }
+]

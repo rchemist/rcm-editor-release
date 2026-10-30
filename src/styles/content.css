@@ -1,0 +1,334 @@
+/* Content rules: the single source for document typography. This file ships in
+ * `dist/styles.css` (`build:styles`: tokens + content + editor chrome) AND in the print
+ * renderer's CSS (`src/print/`, generated module from this file) — never duplicate a rule
+ * elsewhere. Editor-only chrome (root box, toolbar, menus, selection, handles, placeholders
+ * for transient state, dark mode) lives in `editor.css` and stays out of print. */
+
+/* --- base typography: the editor otherwise renders UA defaults; print needs the same rules
+ * inline (no UA guarantee on the PDF server), so the base lives here and ships in both --- */
+.rcm-editor .ProseMirror {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.rcm-editor .ProseMirror > :first-child {
+  margin-top: 0;
+}
+.rcm-editor .ProseMirror > :last-child {
+  margin-bottom: 0;
+}
+.rcm-editor p {
+  margin: 0 0 0.75em;
+}
+.rcm-editor h1,
+.rcm-editor h2,
+.rcm-editor h3,
+.rcm-editor h4,
+.rcm-editor h5,
+.rcm-editor h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.5em;
+}
+.rcm-editor h1 {
+  font-size: 2em;
+}
+.rcm-editor h2 {
+  font-size: 1.5em;
+}
+.rcm-editor h3 {
+  font-size: 1.17em;
+}
+.rcm-editor h4 {
+  font-size: 1em;
+}
+.rcm-editor h5 {
+  font-size: 0.83em;
+}
+.rcm-editor h6 {
+  font-size: 0.67em;
+}
+.rcm-editor ul,
+.rcm-editor ol {
+  margin: 0 0 0.75em;
+  padding-inline-start: 2em;
+}
+/* Markers are explicit: host resets (e.g. Tailwind preflight `list-style: none`) must not hide
+ * them. Inline `list-style-type` from the document still wins. */
+.rcm-editor ul {
+  list-style-type: disc;
+}
+.rcm-editor ul ul {
+  list-style-type: circle;
+}
+.rcm-editor ul ul ul {
+  list-style-type: square;
+}
+.rcm-editor ol {
+  list-style-type: decimal;
+}
+/* Task lists: checkbox beside its text (the item renders `label` + `div`). */
+.rcm-editor ul[data-type='taskList'] {
+  list-style: none;
+  padding-inline-start: 0.25em;
+}
+.rcm-editor ul[data-type='taskList'] > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+.rcm-editor ul[data-type='taskList'] > li > label {
+  flex: 0 0 auto;
+  user-select: none;
+}
+.rcm-editor ul[data-type='taskList'] > li > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.rcm-editor blockquote {
+  margin: 0 0 0.75em;
+  padding-left: 1em;
+  border-left: 3px solid var(--rcm-editor-color-border);
+  color: var(--rcm-editor-color-muted);
+}
+.rcm-editor pre {
+  margin: 0 0 0.75em;
+  padding: var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+  background: var(--rcm-editor-color-surface);
+  border: 1px solid var(--rcm-editor-color-border);
+  border-radius: var(--rcm-editor-radius);
+  font-family: var(--rcm-editor-font-mono);
+  font-size: 0.9em;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.rcm-editor hr {
+  border: 0;
+  border-top: 1px solid var(--rcm-editor-color-border);
+  margin: 1em 0;
+}
+.rcm-editor a {
+  color: var(--rcm-editor-color-accent);
+}
+.rcm-editor img {
+  max-width: 100%;
+}
+
+/* --- images (align attribute) --- */
+.rcm-editor img[data-align='left'],
+.rcm-editor [data-resize-container][data-align='left'] {
+  margin: 0 var(--rcm-editor-space-3) var(--rcm-editor-space-2) 0;
+}
+.rcm-editor img[data-align='right'],
+.rcm-editor [data-resize-container][data-align='right'] {
+  margin: 0 0 var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+}
+.rcm-editor img[data-align='inline'],
+.rcm-editor [data-resize-container][data-align='inline'] {
+  vertical-align: bottom;
+  margin: 0 var(--rcm-editor-space-1);
+}
+.rcm-editor [data-asset-state='missing'] img,
+.rcm-editor img[data-asset-state='missing'] {
+  min-width: 2em;
+  min-height: 2em;
+  outline: 1px dashed var(--rcm-editor-color-warning-border);
+  background: var(--rcm-editor-color-warning-bg);
+}
+
+/* --- figure / figcaption --- */
+.rcm-editor figure {
+  margin: var(--rcm-editor-space-3) 0;
+  display: flow-root;
+}
+.rcm-editor figcaption {
+  color: var(--rcm-editor-color-muted);
+  font-size: 0.9em;
+  margin-top: var(--rcm-editor-space-1);
+  text-align: center;
+}
+
+/* --- page break --- */
+.rcm-editor [data-type='page-break'] {
+  break-after: page;
+  border-top: 2px dashed var(--rcm-editor-color-border);
+  height: 0;
+  margin: var(--rcm-editor-space-4) 0;
+}
+@media print {
+  .rcm-editor [data-type='page-break'] {
+    border: 0;
+    margin: 0;
+  }
+}
+
+/* --- docparser textBox: border/background/width come from inline attrs --- */
+.rcm-editor .rcm-text-box {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+  margin: var(--rcm-editor-space-2) 0;
+}
+
+/* --- footnotes --- */
+.rcm-editor .rcm-footnote-ref {
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: super;
+}
+.rcm-editor .rcm-footnote-ref a,
+.rcm-editor .rcm-footnote-backlink {
+  color: var(--rcm-editor-color-accent);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 1px;
+}
+.rcm-editor .rcm-footnote-ref a:hover,
+.rcm-editor .rcm-footnote-backlink:hover {
+  text-decoration: underline;
+}
+.rcm-editor .rcm-footnotes {
+  margin-top: var(--rcm-editor-space-4);
+  padding-top: var(--rcm-editor-space-2);
+  font-size: 0.9em;
+  position: relative;
+}
+.rcm-editor .rcm-footnotes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  border-top: 1px solid var(--rcm-editor-color-border);
+}
+.rcm-editor .rcm-footnote {
+  display: flex;
+  gap: var(--rcm-editor-space-2);
+  align-items: baseline;
+}
+.rcm-editor .rcm-footnote-label,
+.rcm-editor .rcm-footnote-backlink {
+  flex: none;
+  min-width: 1.5em;
+  text-align: right;
+}
+.rcm-editor .rcm-footnote-label::after,
+.rcm-editor .rcm-footnote-backlink::after {
+  content: ')';
+}
+.rcm-editor .rcm-footnote-body {
+  flex: 1;
+  min-width: 0;
+}
+.rcm-editor .rcm-footnote-body > :first-child {
+  margin-top: 0;
+}
+.rcm-editor .rcm-footnote-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* --- equation chip --- */
+.rcm-editor .rcm-equation {
+  position: relative;
+  display: inline-block;
+  font-family: var(--rcm-editor-font-math);
+  font-style: italic;
+  background: var(--rcm-editor-color-surface);
+  border: 1px solid var(--rcm-editor-color-border);
+  border-radius: 3px;
+  padding: 0 var(--rcm-editor-space-1);
+  line-height: 1.4;
+  white-space: pre-wrap;
+  cursor: pointer;
+}
+
+/* --- docparser placeholder --- */
+.rcm-editor .rcm-placeholder {
+  display: flex;
+  align-items: center;
+  gap: var(--rcm-editor-space-2);
+  margin: var(--rcm-editor-space-2) 0;
+  padding: var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+  color: var(--rcm-editor-color-warning-fg);
+  background: var(--rcm-editor-color-warning-bg);
+  border: 1px dashed var(--rcm-editor-color-warning-border);
+  border-radius: var(--rcm-editor-radius);
+  font-size: 0.9em;
+}
+.rcm-editor .rcm-placeholder-icon {
+  flex: none;
+  width: 1.4em;
+  height: 1.1em;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  position: relative;
+}
+.rcm-editor .rcm-placeholder-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top right,
+    transparent calc(50% - 0.75px),
+    currentColor calc(50% - 0.75px),
+    currentColor calc(50% + 0.75px),
+    transparent calc(50% + 0.75px)
+  );
+}
+.rcm-editor .rcm-placeholder[data-kind='chart'] .rcm-placeholder-icon::after {
+  background: linear-gradient(
+    to right,
+    currentColor 0 20%,
+    transparent 20% 40%,
+    currentColor 40% 60%,
+    transparent 60% 80%,
+    currentColor 80%
+  );
+  inset: 40% 15% 0;
+}
+.rcm-editor .rcm-placeholder[data-kind='ole'] .rcm-placeholder-icon {
+  border-radius: 50%;
+}
+
+/* --- tables: editor attributes (width/border/align render inline) --- */
+.rcm-editor table[data-align='center'] {
+  margin-left: auto;
+  margin-right: auto;
+}
+.rcm-editor table[data-align='right'] {
+  margin-left: auto;
+}
+
+/* --- tables: base (cells without their own border get guide lines; the document is unchanged) --- */
+.rcm-editor table {
+  border-collapse: collapse;
+}
+.rcm-editor td,
+.rcm-editor th {
+  position: relative;
+  min-width: 1em;
+  vertical-align: top;
+}
+.rcm-editor td:not([style*='border']),
+.rcm-editor th:not([style*='border']) {
+  padding: 2px 6px;
+  border: 1px solid var(--rcm-editor-color-border);
+}
+
+/* --- content guard: unsupported nodes (original JSON kept) --- */
+.rcm-editor .rcm-unsupported {
+  margin: var(--rcm-editor-space-2) 0;
+  padding: var(--rcm-editor-space-2) var(--rcm-editor-space-3);
+  color: var(--rcm-editor-color-warning-fg);
+  background: var(--rcm-editor-color-warning-bg);
+  border: 1px dashed var(--rcm-editor-color-warning-border);
+  border-radius: var(--rcm-editor-radius);
+  font-size: 0.9em;
+  user-select: none;
+}
+.rcm-editor .rcm-unsupported-inline {
+  display: inline-block;
+  margin: 0 var(--rcm-editor-space-1);
+  padding: 0 var(--rcm-editor-space-1);
+  line-height: inherit;
+}

@@ -1,0 +1,289 @@
+[
+  {
+    "type": "table",
+    "attrs": {
+      "unsupportedAttrs": null,
+      "width": 632,
+      "border": null,
+      "align": null
+    },
+    "content": [
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                142
+              ],
+              "align": null,
+              "backgroundColor": "#c00000",
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "center",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": "windowtext",
+                          "fontFamily": null,
+                          "fontSize": null,
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      },
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "구분"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 2,
+              "rowspan": 1,
+              "colwidth": [
+                332,
+                143
+              ],
+              "align": null,
+              "backgroundColor": "#d9e2f3",
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": "top"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "center",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2024년 실적"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 2,
+              "colwidth": [
+                142
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": "middle"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "left",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "합계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                332
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "right",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1,200"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                143
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "right",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1,200"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 2,
+              "rowspan": 1,
+              "colwidth": [
+                332,
+                143
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "1.0pt solid windowtext",
+              "borderRight": "1.0pt solid windowtext",
+              "borderBottom": "1.0pt solid windowtext",
+              "borderLeft": "1.0pt solid windowtext",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": "center",
+                  "spaceBefore": null,
+                  "marginRight": null,
+                  "spaceAfter": null,
+                  "marginLeft": null,
+                  "indent": null,
+                  "lineHeight": null,
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1,200"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

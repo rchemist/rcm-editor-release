@@ -1,0 +1,141 @@
+[
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0pt",
+      "marginRight": null,
+      "spaceAfter": "0pt",
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "1.38",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#000000",
+              "fontFamily": "Arial,sans-serif",
+              "fontSize": "11pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "일반 텍스트와 "
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#1155cc",
+              "fontFamily": "Roboto,Arial,sans-serif",
+              "fontSize": "14pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          },
+          {
+            "type": "bold"
+          }
+        ],
+        "text": "굵고 큰 텍스트"
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#000000",
+              "fontFamily": "Arial,sans-serif",
+              "fontSize": "11pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          },
+          {
+            "type": "italic"
+          }
+        ],
+        "text": " 이탤릭 텍스트"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "12pt",
+      "marginRight": null,
+      "spaceAfter": "0pt",
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "1.38",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#cc0000",
+              "fontFamily": "Georgia,serif",
+              "fontSize": "12pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          },
+          {
+            "type": "underline"
+          }
+        ],
+        "text": "밑줄과 색상"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0pt",
+      "marginRight": null,
+      "spaceAfter": "12pt",
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "1.38",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#38761d",
+              "fontFamily": "Arial,sans-serif",
+              "fontSize": "11pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "둘째 문단의 녹색 텍스트"
+      }
+    ]
+  }
+]

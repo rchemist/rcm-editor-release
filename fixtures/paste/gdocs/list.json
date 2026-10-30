@@ -1,0 +1,143 @@
+[
+  {
+    "type": "bulletList",
+    "attrs": {
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "listItem",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "spaceBefore": "0pt",
+              "marginRight": null,
+              "spaceAfter": "0pt",
+              "marginLeft": null,
+              "indent": null,
+              "lineHeight": "1.38",
+              "unsupportedAttrs": null
+            },
+            "content": [
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "textStyle",
+                    "attrs": {
+                      "backgroundColor": null,
+                      "color": "#000000",
+                      "fontFamily": "Arial,sans-serif",
+                      "fontSize": "11pt",
+                      "letterSpacing": null,
+                      "fontStretch": null
+                    }
+                  }
+                ],
+                "text": "첫 항목"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "listItem",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "spaceBefore": "0pt",
+              "marginRight": null,
+              "spaceAfter": "0pt",
+              "marginLeft": null,
+              "indent": null,
+              "lineHeight": "1.38",
+              "unsupportedAttrs": null
+            },
+            "content": [
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "textStyle",
+                    "attrs": {
+                      "backgroundColor": null,
+                      "color": "#0b5394",
+                      "fontFamily": "Arial,sans-serif",
+                      "fontSize": "11pt",
+                      "letterSpacing": null,
+                      "fontStretch": null
+                    }
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "text": "둘째 항목(굵게)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "orderedList",
+    "attrs": {
+      "unsupportedAttrs": null,
+      "start": 1,
+      "type": null
+    },
+    "content": [
+      {
+        "type": "listItem",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "spaceBefore": "0pt",
+              "marginRight": null,
+              "spaceAfter": "0pt",
+              "marginLeft": null,
+              "indent": null,
+              "lineHeight": "1.38",
+              "unsupportedAttrs": null
+            },
+            "content": [
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "textStyle",
+                    "attrs": {
+                      "backgroundColor": null,
+                      "color": "#674ea7",
+                      "fontFamily": "Arial,sans-serif",
+                      "fontSize": "12pt",
+                      "letterSpacing": null,
+                      "fontStretch": null
+                    }
+                  }
+                ],
+                "text": "순서 항목"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

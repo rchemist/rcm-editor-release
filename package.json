@@ -1,0 +1,236 @@
+{
+  "name": "@rchemist/editor",
+  "version": "0.1.0",
+  "private": false,
+  "license": "Apache-2.0",
+  "description": "tiptap v3 based WYSIWYG editor for React (rchemist).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rchemist/rcm-editor-release.git"
+  },
+  "homepage": "https://github.com/rchemist/rcm-editor-release#readme",
+  "bugs": {
+    "url": "https://github.com/rchemist/rcm-editor-release/issues"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./react": {
+      "import": {
+        "types": "./dist/react.d.ts",
+        "default": "./dist/react.js"
+      },
+      "require": {
+        "types": "./dist/react.d.cts",
+        "default": "./dist/react.cjs"
+      }
+    },
+    "./vanilla": {
+      "import": {
+        "types": "./dist/vanilla.d.ts",
+        "default": "./dist/vanilla.js"
+      },
+      "require": {
+        "types": "./dist/vanilla.d.cts",
+        "default": "./dist/vanilla.cjs"
+      }
+    },
+    "./upload": {
+      "import": {
+        "types": "./dist/upload.d.ts",
+        "default": "./dist/upload.js"
+      },
+      "require": {
+        "types": "./dist/upload.d.cts",
+        "default": "./dist/upload.cjs"
+      }
+    },
+    "./paste": {
+      "import": {
+        "types": "./dist/paste.d.ts",
+        "default": "./dist/paste.js"
+      },
+      "require": {
+        "types": "./dist/paste.d.cts",
+        "default": "./dist/paste.cjs"
+      }
+    },
+    "./print": {
+      "import": {
+        "types": "./dist/print.d.ts",
+        "default": "./dist/print.js"
+      },
+      "require": {
+        "types": "./dist/print.d.cts",
+        "default": "./dist/print.cjs"
+      }
+    },
+    "./listgrid": {
+      "import": {
+        "types": "./dist/listgrid.d.ts",
+        "default": "./dist/listgrid.js"
+      },
+      "require": {
+        "types": "./dist/listgrid.d.cts",
+        "default": "./dist/listgrid.cjs"
+      }
+    },
+    "./docparser": {
+      "import": {
+        "types": "./dist/docparser.d.ts",
+        "default": "./dist/docparser.js"
+      },
+      "require": {
+        "types": "./dist/docparser.d.cts",
+        "default": "./dist/docparser.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "./dist/react.d.ts"
+      ],
+      "vanilla": [
+        "./dist/vanilla.d.ts"
+      ],
+      "upload": [
+        "./dist/upload.d.ts"
+      ],
+      "paste": [
+        "./dist/paste.d.ts"
+      ],
+      "print": [
+        "./dist/print.d.ts"
+      ],
+      "listgrid": [
+        "./dist/listgrid.d.ts"
+      ],
+      "docparser": [
+        "./dist/docparser.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "build": "npm run clean && npm run gen:print-css && tsup && npm run build:styles",
+    "build:styles": "mkdir -p dist && cat src/styles/tokens.css src/styles/content.css src/styles/editor.css > dist/styles.css",
+    "gen:print-css": "node scripts/gen-print-css.mjs",
+    "clean": "rm -rf dist",
+    "lint": "eslint --no-error-on-unmatched-pattern 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}' 'apps/*/src/**/*.{ts,tsx}'",
+    "format": "prettier --no-error-on-unmatched-pattern --write 'src/**/*.{ts,tsx,css,json}' 'tests/**/*.{ts,tsx}' 'e2e/**/*.ts' 'apps/*/src/**/*.{ts,tsx,css}' 'apps/*/*.{ts,json,html}' 'examples/**/*.{ts,js,jsx,json,html}'",
+    "format:check": "prettier --no-error-on-unmatched-pattern --check 'src/**/*.{ts,tsx,css,json}' 'tests/**/*.{ts,tsx}' 'e2e/**/*.ts' 'apps/*/src/**/*.{ts,tsx,css}' 'apps/*/*.{ts,json,html}' 'examples/**/*.{ts,js,jsx,json,html}'",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --grep-invert @perf",
+    "check:exports": "attw --pack . --exclude-entrypoints styles.css",
+    "check:publint": "publint",
+    "check:licenses": "node scripts/check-licenses.mjs",
+    "check:licenses:self-test": "node scripts/check-licenses.mjs --self-test",
+    "check:fonts": "node scripts/check-fonts.mjs",
+    "check:fonts:self-test": "node scripts/check-fonts.mjs --self-test",
+    "smoke:load": "bash scripts/smoke-load.sh",
+    "prepublishOnly": "npm run clean && npm run type-check && npm test && npm run build",
+    "dev:playground": "npm run dev -w @rchemist/editor-playground",
+    "test:consumers": "bash scripts/consumer-smoke.sh",
+    "check:no-cloud-sdk": "node scripts/check-no-cloud-sdk.mjs",
+    "check:no-cloud-sdk:self-test": "node scripts/check-no-cloud-sdk.mjs --self-test",
+    "check:pdf": "bash scripts/pdf-check.sh",
+    "check:release-docs": "node scripts/check-release-docs.mjs"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-html": "^6.4.12",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/search": "^6.7.2",
+    "@codemirror/view": "^6.43.15",
+    "@lezer/highlight": "^1.2.5",
+    "@tiptap/extension-file-handler": "^3.32.1",
+    "@tiptap/extension-find-and-replace": "^3.32.1",
+    "@tiptap/extension-highlight": "^3.32.1",
+    "@tiptap/extension-image": "^3.32.1",
+    "@tiptap/extension-list": "^3.32.1",
+    "@tiptap/extension-subscript": "^3.32.1",
+    "@tiptap/extension-superscript": "^3.32.1",
+    "@tiptap/extension-table": "^3.32.1",
+    "@tiptap/extension-text-align": "^3.32.1",
+    "@tiptap/extension-text-style": "^3.32.1",
+    "@tiptap/extension-youtube": "^3.32.1",
+    "@tiptap/extensions": "^3.32.1",
+    "@tiptap/starter-kit": "^3.32.1",
+    "dompurify": "^3.4.17"
+  },
+  "peerDependencies": {
+    "@rchemist/listgrid": ">=0.5.0",
+    "@tiptap/core": "^3.32.1",
+    "@tiptap/pm": "^3.32.1",
+    "@tiptap/react": "^3.32.1",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "@rchemist/listgrid": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.61.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@tiptap/core": "3.32.1",
+    "@tiptap/pm": "3.32.1",
+    "@tiptap/react": "3.32.1",
+    "@types/node": "^22.0.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^16.5.0",
+    "jsdom": "^29.0.2",
+    "prettier": "^3.8.3",
+    "publint": "^0.3.21",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.58.2",
+    "vitest": "^4.1.4"
+  }
+}

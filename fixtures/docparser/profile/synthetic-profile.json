@@ -1,0 +1,159 @@
+{
+  "source": "synthetic-profile.hwpx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-0.1.1+rcm-editor.2",
+  "doc": {
+    "content": [
+      {
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "text": "제1장 프로필 시험",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "text": "첫 쪽의 본문이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "type": "pageBreak"
+      },
+      {
+        "content": [
+          {
+            "text": "둘째 쪽의 첫 문단이다. 이 문단 앞에 쪽 나눔이 있다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 한 문단 캡션이 붙은 그림이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "attrs": {
+              "height": 120,
+              "src": "asset:sha256:e93186cbb1ded04219e0ed30fa82ae5a501e6256d4717c893c54a9a1ab25a1a7",
+              "width": 160
+            },
+            "type": "image"
+          },
+          {
+            "content": [
+              {
+                "text": "그림 1 한 문단 설명",
+                "type": "text"
+              }
+            ],
+            "type": "figcaption"
+          }
+        ],
+        "type": "figure"
+      },
+      {
+        "type": "pageBreak"
+      },
+      {
+        "content": [
+          {
+            "text": "셋째 쪽의 첫 문단이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 두 문단 캡션이 붙은 그림이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "attrs": {
+              "height": 120,
+              "src": "asset:sha256:e93186cbb1ded04219e0ed30fa82ae5a501e6256d4717c893c54a9a1ab25a1a7",
+              "width": 160
+            },
+            "type": "image"
+          },
+          {
+            "content": [
+              {
+                "text": "그림 2 첫째 설명",
+                "type": "text"
+              },
+              {
+                "type": "hardBreak"
+              },
+              {
+                "text": "둘째 설명",
+                "type": "text"
+              }
+            ],
+            "type": "figcaption"
+          }
+        ],
+        "type": "figure"
+      },
+      {
+        "content": [
+          {
+            "text": "단 나눔 문단은 쪽 나눔이 아니다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "text": "캡션이 없는 그림은 figure로 묶이지 않는다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "height": 120,
+          "src": "asset:sha256:e93186cbb1ded04219e0ed30fa82ae5a501e6256d4717c893c54a9a1ab25a1a7",
+          "width": 160
+        },
+        "type": "image"
+      },
+      {
+        "content": [
+          {
+            "text": "끝.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      }
+    ],
+    "type": "doc"
+  }
+}

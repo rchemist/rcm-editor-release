@@ -1,0 +1,218 @@
+{
+  "source": "synthetic-objects.hwpx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-0.1.1",
+  "doc": {
+    "content": [
+      {
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "text": "제1장 개체 시험",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "text": "각주와 미주, 수식을 포함한 문단이다.",
+            "type": "text"
+          },
+          {
+            "attrs": {
+              "id": "fn-1",
+              "label": "1"
+            },
+            "type": "footnoteReference"
+          },
+          {
+            "text": " 이어지는 글 ",
+            "type": "text"
+          },
+          {
+            "attrs": {
+              "id": "en-1",
+              "label": "1"
+            },
+            "type": "footnoteReference"
+          },
+          {
+            "text": " 수식 ",
+            "type": "text"
+          },
+          {
+            "attrs": {
+              "format": "hwp",
+              "script": "x^2 + y^2 = z^2"
+            },
+            "type": "equation"
+          },
+          {
+            "text": " 끝.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 글상자이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "backgroundColor": "#ddebf7",
+          "borderBottom": "0.3pt solid #1f4e79",
+          "borderLeft": "0.3pt solid #1f4e79",
+          "borderRight": "0.3pt solid #1f4e79",
+          "borderTop": "0.3pt solid #1f4e79",
+          "width": 300
+        },
+        "content": [
+          {
+            "attrs": {
+              "textAlign": "center"
+            },
+            "content": [
+              {
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  },
+                  {
+                    "type": "underline"
+                  },
+                  {
+                    "type": "strike"
+                  }
+                ],
+                "text": "글상자 안의 굵은 제목",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          },
+          {
+            "content": [
+              {
+                "text": "글상자 본문 한 줄이다.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "type": "textBox"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 그림이다(16x12 PNG를 크기 지정으로 표시).",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "height": 120,
+          "src": "asset:sha256:e93186cbb1ded04219e0ed30fa82ae5a501e6256d4717c893c54a9a1ab25a1a7",
+          "width": 160
+        },
+        "type": "image"
+      },
+      {
+        "content": [
+          {
+            "text": "아래는 대체되는 개체들이다. 이진 자료가 없는 OLE, 이진 자료가 없는 차트, 지원하지 않는 형식의 그림이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "kind": "ole",
+          "reason": "missing_binary"
+        },
+        "type": "placeholder"
+      },
+      {
+        "attrs": {
+          "kind": "chart",
+          "reason": "missing_binary"
+        },
+        "type": "placeholder"
+      },
+      {
+        "attrs": {
+          "kind": "image",
+          "reason": "unsupported_format"
+        },
+        "type": "placeholder"
+      },
+      {
+        "content": [
+          {
+            "text": "끝.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "attrs": {
+              "id": "fn-1",
+              "label": "1"
+            },
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "첫째 각주 내용이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "footnote"
+          },
+          {
+            "attrs": {
+              "id": "en-1",
+              "label": "1"
+            },
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "첫째 미주 내용이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "footnote"
+          }
+        ],
+        "type": "footnotes"
+      }
+    ],
+    "type": "doc"
+  }
+}

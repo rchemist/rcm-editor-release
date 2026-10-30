@@ -1,0 +1,333 @@
+[
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0pt",
+      "marginRight": "0pt",
+      "spaceAfter": "0pt",
+      "marginLeft": "0pt",
+      "indent": null,
+      "lineHeight": "130%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"함초롬바탕\"",
+              "fontSize": "10.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "한글 기본 문단입니다. HStyle1 클래스 규칙이 인라인으로 반영됩니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "4.0pt",
+      "marginRight": null,
+      "spaceAfter": "4.0pt",
+      "marginLeft": "28.35pt",
+      "indent": "14.17pt",
+      "lineHeight": "160%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#31859c",
+              "fontFamily": "\"한컴바탕\"",
+              "fontSize": "12.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "들여쓰기와 문단 여백, 색상을 가진 문단입니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": "center",
+      "spaceBefore": null,
+      "marginRight": null,
+      "spaceAfter": null,
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "18.0pt",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"함초롬고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "가운데 정렬 문단입니다."
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "attrs": {
+      "unsupportedAttrs": null,
+      "width": 560,
+      "border": "0.5pt solid #000000",
+      "align": null
+    },
+    "content": [
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                210
+              ],
+              "align": null,
+              "backgroundColor": "#d9e2f3",
+              "borderTop": "0.5pt solid #4472c4",
+              "borderRight": "0.5pt solid #4472c4",
+              "borderBottom": "0.5pt solid #4472c4",
+              "borderLeft": "0.5pt solid #4472c4",
+              "verticalAlign": "middle"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": "0pt",
+                  "marginRight": "0pt",
+                  "spaceAfter": "0pt",
+                  "marginLeft": "0pt",
+                  "indent": null,
+                  "lineHeight": "130%",
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.0pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "항목"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                210
+              ],
+              "align": null,
+              "backgroundColor": "#d9e2f3",
+              "borderTop": "0.5pt solid #4472c4",
+              "borderRight": "0.5pt solid #4472c4",
+              "borderBottom": "0.5pt solid #4472c4",
+              "borderLeft": "0.5pt solid #4472c4",
+              "verticalAlign": "middle"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": "0pt",
+                  "marginRight": "0pt",
+                  "spaceAfter": "0pt",
+                  "marginLeft": "0pt",
+                  "indent": null,
+                  "lineHeight": "130%",
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.0pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "값"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tableRow",
+        "attrs": {
+          "unsupportedAttrs": null
+        },
+        "content": [
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                210
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "0.5pt solid #000000",
+              "borderRight": "0.5pt solid #000000",
+              "borderBottom": "0.5pt solid #000000",
+              "borderLeft": "0.5pt solid #000000",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": "0pt",
+                  "marginRight": "0pt",
+                  "spaceAfter": "0pt",
+                  "marginLeft": "0pt",
+                  "indent": null,
+                  "lineHeight": "130%",
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.0pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "셀 너비 157.5pt"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableCell",
+            "attrs": {
+              "unsupportedAttrs": null,
+              "colspan": 1,
+              "rowspan": 1,
+              "colwidth": [
+                210
+              ],
+              "align": null,
+              "backgroundColor": null,
+              "borderTop": "0.5pt solid #000000",
+              "borderRight": "0.5pt solid #000000",
+              "borderBottom": "0.5pt solid #000000",
+              "borderLeft": "0.5pt solid #000000",
+              "verticalAlign": null
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "spaceBefore": "0pt",
+                  "marginRight": "0pt",
+                  "spaceAfter": "0pt",
+                  "marginLeft": "0pt",
+                  "indent": null,
+                  "lineHeight": "130%",
+                  "unsupportedAttrs": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "backgroundColor": null,
+                          "color": null,
+                          "fontFamily": "\"함초롬바탕\"",
+                          "fontSize": "10.0pt",
+                          "letterSpacing": null,
+                          "fontStretch": null
+                        }
+                      }
+                    ],
+                    "text": "157.5pt"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

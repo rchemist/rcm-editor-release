@@ -1,0 +1,9 @@
+{
+  "name": "@rchemist/editor-example-upload-server",
+  "private": true,
+  "type": "module",
+  "description": "Example upload backend for @rchemist/editor (multipart receiver + MinIO presign). Not part of the package.",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

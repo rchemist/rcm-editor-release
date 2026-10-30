@@ -1,0 +1,51 @@
+name: Publish
+
+# Release lane (rcm-listgrid publish.yml pattern): pushing a `v*` tag publishes to npm.
+# No workflow_dispatch on purpose: the dist-tag is derived from the tag name,
+# so a dispatch from a branch ref would publish under the wrong tag.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: release-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    # npm --provenance requires a GitHub-hosted runner (E422 on self-hosted).
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Node 24 ships npm 11 (OIDC trusted publishing needs npm >= 11.5.1).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install
+        run: npm ci
+
+      - name: Tag matches package.json version
+        run: test "${GITHUB_REF_NAME#v}" = "$(node -p "require('./package.json').version")"
+
+      - name: Check release docs (CHANGELOG top == package.json version)
+        run: npm run check:release-docs
+
+      - name: Publish (prepublishOnly runs type-check + test + build)
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME#v}"
+          case "$TAG_NAME" in
+            *-*) NPM_TAG="next"   ;;  # prerelease (0.2.0-beta.N/rc) -> dist-tag next
+            *)   NPM_TAG="latest" ;;
+          esac
+          echo "Publishing $TAG_NAME with dist-tag $NPM_TAG"
+          npm publish --provenance --access public --tag "$NPM_TAG"

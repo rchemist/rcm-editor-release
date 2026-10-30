@@ -1,0 +1,112 @@
+{
+  "source": "nested-table.docx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-blocks-0.8.0",
+  "doc": {
+    "content": [
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 2,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "바깥 앞",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "attrs": {
+                              "colspan": 1,
+                              "rowspan": 1
+                            },
+                            "content": [
+                              {
+                                "content": [
+                                  {
+                                    "text": "중간 앞",
+                                    "type": "text"
+                                  }
+                                ],
+                                "type": "paragraph"
+                              },
+                              {
+                                "content": [
+                                  {
+                                    "content": [
+                                      {
+                                        "attrs": {
+                                          "colspan": 2,
+                                          "rowspan": 1
+                                        },
+                                        "content": [
+                                          {
+                                            "content": [
+                                              {
+                                                "text": "안쪽",
+                                                "type": "text"
+                                              }
+                                            ],
+                                            "type": "paragraph"
+                                          }
+                                        ],
+                                        "type": "tableCell"
+                                      }
+                                    ],
+                                    "type": "tableRow"
+                                  }
+                                ],
+                                "type": "table"
+                              },
+                              {
+                                "content": [
+                                  {
+                                    "text": "중간 뒤",
+                                    "type": "text"
+                                  }
+                                ],
+                                "type": "paragraph"
+                              }
+                            ],
+                            "type": "tableCell"
+                          }
+                        ],
+                        "type": "tableRow"
+                      }
+                    ],
+                    "type": "table"
+                  },
+                  {
+                    "content": [
+                      {
+                        "text": "바깥 뒤",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "type": "doc"
+  }
+}

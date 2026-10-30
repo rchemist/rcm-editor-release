@@ -1,0 +1,242 @@
+{
+  "source": "sample-doc.docx",
+  "docparser_commit": "147aae3",
+  "render_revision": "tiptap-blocks-0.8.0",
+  "doc": {
+    "content": [
+      {
+        "content": [
+          {
+            "text": "머리말",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "text": "합성 문서 개요",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "text": "본문 문단이다. 블록 렌더는 모양 없이 구조만 만든다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "text": "세부 내용",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "content": [
+          {
+            "text": "머리말·꼬리말 문단은 본문에 나오지 않는다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "첫째 글머리 항목이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          },
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "둘째 글머리 항목이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          },
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "첫째 번호 항목이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              },
+              {
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "중첩 번호 항목이다.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "listItem"
+                  }
+                ],
+                "type": "bulletList"
+              }
+            ],
+            "type": "listItem"
+          },
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "둘째 번호 항목이다.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          }
+        ],
+        "type": "bulletList"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 2,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "구분",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableHeader"
+              }
+            ],
+            "type": "tableRow"
+          },
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "수업",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              },
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "이론",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          },
+          {
+            "content": [
+              {
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "실습",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tableCell"
+              }
+            ],
+            "type": "tableRow"
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "content": [
+          {
+            "text": "표 다음 문단이다.",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      }
+    ],
+    "type": "doc"
+  }
+}

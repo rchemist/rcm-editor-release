@@ -1,0 +1,204 @@
+[
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0cm",
+      "marginRight": "0cm",
+      "spaceAfter": "8.0pt",
+      "marginLeft": "0cm",
+      "indent": null,
+      "lineHeight": "115%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "기본 문단입니다. 클래스 규칙의 줄 간격과 글꼴이 적용됩니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "6.0pt",
+      "marginRight": "0cm",
+      "spaceAfter": "6.0pt",
+      "marginLeft": "36.0pt",
+      "indent": "12.0pt",
+      "lineHeight": "160%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "바탕",
+              "fontSize": "12.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "들여쓰기와 문단 여백, 줄 간격을 가진 본문 문단입니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0cm",
+      "marginRight": "0cm",
+      "spaceAfter": "8.0pt",
+      "marginLeft": "72.0pt",
+      "indent": null,
+      "lineHeight": "18.0pt",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "mso 선언만 가진 문단입니다. 왼쪽 여백과 줄 간격이 매핑됩니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "0cm",
+      "marginRight": "0cm",
+      "spaceAfter": "8.0pt",
+      "marginLeft": "0cm",
+      "indent": null,
+      "lineHeight": "115%",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#c00000",
+              "fontFamily": "\"함초롬바탕\"",
+              "fontSize": "18.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "큰 글자와 글자색"
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          },
+          {
+            "type": "highlight",
+            "attrs": {
+              "color": "yellow"
+            }
+          }
+        ],
+        "text": " 형광펜"
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": " 그리고 "
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "9.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "작은 글자"
+      },
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": "\"맑은 고딕\"",
+              "fontSize": "11.0pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "입니다."
+      }
+    ]
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": "12pt",
+      "marginRight": null,
+      "spaceAfter": "6pt",
+      "marginLeft": "24pt",
+      "indent": "10pt",
+      "lineHeight": "1.6",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#c00000",
+              "fontFamily": "'Noto Sans KR', sans-serif",
+              "fontSize": "14pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "웹 문단입니다. 인라인 스타일이 그대로 유지됩니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": null,
+      "spaceBefore": null,
+      "marginRight": null,
+      "spaceAfter": null,
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "18pt",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": "#1f3864",
+              "fontFamily": "NanumGothic, serif",
+              "fontSize": "11pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          },
+          {
+            "type": "highlight",
+            "attrs": {
+              "color": "#fff2cc"
+            }
+          }
+        ],
+        "text": "여백 없는 두 번째 문단입니다. 형광 배경과 pt 줄 간격을 가집니다."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "attrs": {
+      "textAlign": "center",
+      "spaceBefore": null,
+      "marginRight": null,
+      "spaceAfter": null,
+      "marginLeft": null,
+      "indent": null,
+      "lineHeight": "2.0",
+      "unsupportedAttrs": null
+    },
+    "content": [
+      {
+        "type": "text",
+        "marks": [
+          {
+            "type": "textStyle",
+            "attrs": {
+              "backgroundColor": null,
+              "color": null,
+              "fontFamily": null,
+              "fontSize": "12pt",
+              "letterSpacing": null,
+              "fontStretch": null
+            }
+          }
+        ],
+        "text": "가운데 정렬 문단입니다."
+      }
+    ]
+  }
+]
